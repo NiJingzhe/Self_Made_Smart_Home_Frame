@@ -5,9 +5,9 @@ from flask import request
 from flask import redirect
 from flask import url_for
 import sys
-from home import home 
-from device import device
-from room import room
+from app.home import home 
+from app.device import device
+from app.room import room
 
 my_home = home(owner_ = "Lil-Dinosaur")
 

@@ -5,7 +5,8 @@ class room:
         self.device_list = {}
         
     def add_device(self,device):
-        self.device_list[device.name] = device.control_type
+        if not (device.name in self.device_list.keys()):
+            self.device_list[device.name] = device.control_type
         
     def del_device(self,device_name):
         if device_name in self.device_list.keys():
