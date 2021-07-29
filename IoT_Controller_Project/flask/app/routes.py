@@ -53,14 +53,14 @@ def roomPage(room_name):
             my_home.room_list[room_name].add_device(device_)
 
             return render_template('room.html',room_name_=room_name,
-                                device_list_=my_home.room_list[room_name].device_list)
+                device_list_=my_home.room_list[room_name].device_list)
                                 
         elif request.form['button'] == "删除设备":
 
             my_home.room_list[room_name].del_device(request.form['device_name'])
 
             return render_template('room.html',room_name_=room_name,
-                                device_list_=my_home.room_list[room_name].device_list)
+                device_list_=my_home.room_list[room_name].device_list)
                                 
         else:
             
@@ -69,7 +69,7 @@ def roomPage(room_name):
     else:
     
         return render_template('room.html',room_name_=room_name,
-                                device_list_=my_home.room_list[room_name].device_list)
+                device_list_=my_home.room_list[room_name].device_list)
 
 
 
