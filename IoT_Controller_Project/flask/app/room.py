@@ -1,3 +1,5 @@
+from flask_sqlalchemy import SQLAlchemy as sqlal
+
 class room:
     
     def __init__(self,name):

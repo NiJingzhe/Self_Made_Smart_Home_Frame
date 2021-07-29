@@ -1,3 +1,5 @@
+from flask_sqlalchemy import SQLAlchemy as sqlal
+
 class home:
 
     def __init__(self,owner_):
