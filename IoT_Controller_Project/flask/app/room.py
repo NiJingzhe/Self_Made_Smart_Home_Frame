@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy as sqlal
-
+from app import db_model
 
 class room:
 
