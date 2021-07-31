@@ -1,13 +1,13 @@
 # 从app模块中即从__init__.py中导入创建的app应用
 from app import app
-from app import home
-from app import device
 from flask import render_template
 from flask import request
 from flask import redirect
 from flask import url_for
 import time
 import sys
+from app.home import home
+from app.device import device
 
 
 my_home = home(owner_="Lil-Dinosaur")
