@@ -30,6 +30,31 @@ class device_in_home(db.Model):
         return '<Device %r %r>' % self.device_name % self.control_type
 
 
+db.create_all()
 
+
+class home:
+
+    def __init__(self, owner_):
+        self.owner = owner_
+        self.device_list = {}
+
+    def add_device(self, device):
+        if not (device.name in self.device_list.keys()):
+            self.device_list[device.name] = device.control_type
+            db.session.add()
+
+    def del_device(self, device_name):
+        if device_name in self.device_list.keys():
+            del self.device_list[device_name]
+
+
+class device():
+    
+    def __init__(self,name,control_type):
+        self.name = name
+        self.control_type = control_type
+
+            
 
 
