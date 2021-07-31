@@ -1,4 +1,4 @@
-# Self_Made_Smart_Family_Frame
+# Self_Made_Smart_Home_Frame
 
 #### 介绍
 
@@ -8,9 +8,10 @@
 
 1.  首先是建立了`home,room,device`三个类。
     `home`含有`room_list`,`room`有`device_list`,而`device`则内涵自身的`control_type`(这个东西决定了该设备的控制方式)
-2.  在HHC的webapp中选择房间,设备,并更新设备状态后,作为家庭中枢的树莓派向局域网中广播消息 `{room_name,device_name,state}`;由对应的RoomGate(一块arduino)认领.
-3.  于是RoomGate根据消息,向对应的device_Controller(又是一块arduino)发送状态更新的指令.
-4.  经过以上几个步骤实现前端webapp控制家庭设备的目的.
+2.  在HHC的webapp中选择房间,设备,并更新设备状态后,作为家庭中枢的树莓派向局域网中广播消息 `{room_name,device_name,state}`,并加入任务队列;由对应的RoomGate(一块arduino)认领,并加入任务队列.
+3.  于是RoomGate根据消息,向对应的device_Controller(又是一块arduino)发送状态更新的指令,完成后返回完成消息,RoomGate接收到后更新任务队列并向中枢返回消息.
+4.  中枢接收到RoomGate的完成消息后更新任务队列.
+5.  经过以上几个步骤实现前端webapp控制家庭设备的目的.
 
 #### 安装教程
 暂时没有呢。。。。
