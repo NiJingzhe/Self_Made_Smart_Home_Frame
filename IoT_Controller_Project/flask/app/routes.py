@@ -4,10 +4,10 @@ from flask import render_template
 from flask import request
 from flask import redirect
 from flask import url_for
+import time
 import sys
 from app.home import home
 from app.device import device
-from app.room import room
 
 my_home = home(owner_="Lil-Dinosaur")
 
@@ -16,60 +16,40 @@ my_home = home(owner_="Lil-Dinosaur")
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-
-        if request.form['button'] == "添加房间":
-
-            room_ = room(request.form['room_name'])
-            my_home.add_room(room_)
-            return render_template('index.html', home_name=my_home.owner,
-                                   room_list_=my_home.room_list)
-
-        elif request.form['button'] == "删除房间":
-
-            my_home.del_room(request.form['room_name'])
-            return render_template('index.html', home_name=my_home.owner,
-                                   room_list_=my_home.room_list)
-        else:
-
-            return redirect(url_for('roomPage',
-                                    room_name=request.form['button']))
-
-    else:
-
-        return render_template('index.html', home_name=my_home.owner,
-                               room_list_=my_home.room_list)
-
-
-@app.route('/room/<room_name>', methods=['GET', 'POST'])
-def roomPage(room_name):
+def home_page():
 
     if request.method == 'POST':
 
         if request.form['button'] == "添加设备":
 
-            device_ = device(request.form['device_name'],
-                             request.form['control_type'])
+            if ("control_type" in request.form.keys()) and ("device_name" in request.form.keys() and (request.form['device_name'] != '')):
+                device_ = device(request.form['device_name'],
+                                 request.form['control_type'])
 
-            my_home.room_list[room_name].add_device(device_)
+                my_home.add_device(device_)
 
-            return render_template('room.html', room_name_=room_name,
-                                   device_list_=my_home.room_list[room_name].device_list)
+                return render_template('home.html', owner_name=my_home.owner,
+                                       device_list_=my_home.device_list)
+            else:
+
+                return redirect(url_for('lack_info_err'))
 
         elif request.form['button'] == "删除设备":
 
-            my_home.room_list[room_name].del_device(
-                request.form['device_name'])
+            my_home.del_device(request.form['device_name'])
 
-            return render_template('room.html', room_name_=room_name,
-                                   device_list_=my_home.room_list[room_name].device_list)
+            return render_template('home.html', owner_name=my_home.owner,
+                                   device_list_=my_home.device_list)
 
         else:
 
-            pass
+            return ""
 
     else:
 
-        return render_template('room.html', room_name_=room_name,
-                               device_list_=my_home.room_list[room_name].device_list)
+        return render_template('home.html', owner_name=my_home.owner,
+                               device_list_=my_home.device_list)
+
+@app.route('/lack_info_err_page')
+def lack_info_err():
+    return render_template('lack_info_err.html')

@@ -1,5 +1,4 @@
 from flask_sqlalchemy import SQLAlchemy as sqlal
-from app import device_in_room
 
 
 class home:
