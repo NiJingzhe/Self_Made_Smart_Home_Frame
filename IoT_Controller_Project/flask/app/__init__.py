@@ -9,6 +9,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'Ho
 app.config['SQLALCHEMY_MIGRATE_REPO'] = os.path.join(basedir, 'db_repository')
 
 from app import routes
+
 from flask_sqlalchemy import SQLAlchemy as sqlal
 
 db = sqlal(app)

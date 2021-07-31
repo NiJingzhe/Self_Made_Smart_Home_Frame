@@ -6,16 +6,15 @@ class home:
 
     def __init__(self, owner_):
         self.owner = owner_
-        self.room_list = {}
+        self.device_list = {}
 
-    def add_room(self, room):
-        if not (room.name in self.room_list.keys()):
-            self.room_list[room.name] = room
-        else:
-            pass
+    def add_device(self, device):
+        if not (device.name in self.device_list.keys()):
+            self.device_list[device.name] = device.control_type
 
-    def del_room(self, room_name):
-        if room_name in self.room_list.keys():
-            del self.room_list[room_name]
+
+    def del_device(self, device_name):
+        if device_name in self.device_list.keys():
+            del self.device_list[device_name]
         else:
             pass
