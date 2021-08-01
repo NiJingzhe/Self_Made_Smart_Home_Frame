@@ -51,6 +51,20 @@ def home_page():
         return render_template('home.html', owner_name=my_home.owner,
                                device_list_=my_home.device_list)
 
+
+@app.route('/device/<device_name>/<control_type>')
+def device_page(device_name, control_type):
+
+    ### broadcast and get device state from Device_Controller
+
+    if control_type == "switch":
+        return ""
+    elif control_type == "switch&slider":
+        return ""
+
+
+
 @app.route('/lack_info_err_page')
 def lack_info_err():
     return render_template('lack_info_err.html')
+
