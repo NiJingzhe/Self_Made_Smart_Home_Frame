@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<head>
+<meta charset="utf-8" />
+{% if owner_name %}
+   <title>{{owner_name}}的家庭控制中心</title>
+{% else %}
+   <title>你的家庭控制中心</title>
+{% endif %}
+</head>
+
+<body>
+   <h1>欢迎来到{{owner_name}}的家</h1>
+     
+   <form method="post">
+        <input id="switch" name="button" type="button" value={{state}}></input>
+   </form>
+</body>
+
+</html>
