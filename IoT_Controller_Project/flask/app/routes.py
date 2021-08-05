@@ -42,9 +42,10 @@ def home_page():
             return render_template('home.html', owner_name=my_home.owner,
                                    device_list_=my_home.device_list)
 
-        else:
+        elif request.form['button'] in my_home.device_list:
 
-            return ""
+            return redirect(url_for('device_page', device_name=request.form['button'],
+                                    control_type=my_home.device_list[request.form['button']]))
 
     else:
 
@@ -52,19 +53,11 @@ def home_page():
                                device_list_=my_home.device_list)
 
 
-@app.route('/device/<device_name>/<control_type>')
+@app.route('/device/<device_name>/<control_type>', methods=['GET', 'POST'])
 def device_page(device_name, control_type):
-
-    ### broadcast and get device state from Device_Controller
-
-    if control_type == "switch":
-        return ""
-    elif control_type == "switch&slider":
-        return ""
-
+    return ""
 
 
 @app.route('/lack_info_err_page')
 def lack_info_err():
     return render_template('lack_info_err.html')
-

@@ -2,19 +2,16 @@
 
 <head>
 <meta charset="utf-8" />
-{% if owner_name %}
-   <title>{{owner_name}}的家庭控制中心</title>
-{% else %}
-   <title>你的家庭控制中心</title>
-{% endif %}
+   <title>{{device_name}}</title>
 </head>
 
 <body>
-   <h1>欢迎来到{{owner_name}}的家</h1>
-     
+   <h1>{{device_name}}的控制面板</h1>
+   <hr />
    <form method="post">
-        <input id="switch" name="button" type="button" value={{state}}></input>
+        <input id="switch" name="button" type="button" value={{state}} click="change_state"></input>
    </form>
+
 </body>
 
 </html>
