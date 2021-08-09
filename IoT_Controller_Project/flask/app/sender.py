@@ -17,6 +17,6 @@ class sender:
     def broadcast(self, message):
         self.s.sendto(json.dumps(message).encode('utf-8'),
          (self.HOST, self.PORT))
-        self.s.close()
+
 
 

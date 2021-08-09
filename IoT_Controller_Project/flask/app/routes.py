@@ -14,7 +14,7 @@ from app.receiver import receiver
 
 my_home = home(owner_="Lil-Dinosaur")
 my_sender = sender(HOST_IP='192.168.12.255',PORT=4000)
-my_receiver = receiver(PORT=4000)
+my_receiver = receiver(PORT=4001)
 
 # 建立路由，通过路由可以执行其覆盖的方法，可以多个路由指向同一个方法。
 
@@ -70,7 +70,7 @@ def device_page(device_name, control_type):
 
     times = 0
     return_message = my_receiver.receive()
-    while (return_message == '') and (times < 10):
+    while (return_message == False) and (times < 1000):
         return_message = my_receiver.receive()
         times += 1
 
@@ -78,7 +78,12 @@ def device_page(device_name, control_type):
     device_state = return_message['state']
 
     if control_type == "switch":
-        return render_template("switch.html", state=device_state, device_name=device_name)
+        
+        if request.method == "POST":
+            if request.form['button'] == "打开":
+                
+        else:
+            return render_template("switch.html", state=device_state, device_name=device_name)
 
 
     elif control_type == "switch&slider":

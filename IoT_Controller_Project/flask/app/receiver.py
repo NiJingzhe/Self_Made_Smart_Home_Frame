@@ -4,7 +4,7 @@ import json
 class receiver:
 
     ss = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    PORT = 4000
+    PORT = 4001
 
 
     def __init__(self, PORT):
@@ -16,11 +16,11 @@ class receiver:
     def receive(self):
         message, address = self.ss.recvfrom(65535)
         if not len(message):
-            self.ss.close()
+
             return False
         else:
             data = json.loads(message.decode('utf-8'))
-            self.ss.close()
+ 
             return data
 
     
