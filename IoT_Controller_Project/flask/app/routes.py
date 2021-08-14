@@ -87,10 +87,12 @@ def device_page(device_name, control_type):
                 device_state = "关闭"
                 command_message = {"device_name":device_name,"cmd":"close"}
                 my_sender.broadcast(command_message)
+                return render_template("switch.html", state=device_state, device_name=device_name)
             else:
                 device_state = "打开"
                 command_message = {"device_name":device_name,"cmd":"open"}
                 my_sender.broadcast(command_message)
+                return render_template("switch.html", state=device_state, device_name=device_name)
         else:
             return render_template("switch.html", state=device_state, device_name=device_name)
 
