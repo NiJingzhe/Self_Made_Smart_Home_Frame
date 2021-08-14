@@ -76,12 +76,21 @@ def device_page(device_name, control_type):
 
 
     device_state = return_message['state']
+    if 'value' in return_message.keys():
+        device_value = return_message['value']
+
 
     if control_type == "switch":
         
         if request.method == "POST":
             if request.form['button'] == "打开":
-                
+                device_state = "关闭"
+                command_message = {"device_name":device_name,"cmd":"close"}
+                my_sender.broadcast(command_message)
+            else:
+                device_state = "打开"
+                command_message = {"device_name":device_name,"cmd":"open"}
+                my_sender.broadcast(command_message)
         else:
             return render_template("switch.html", state=device_state, device_name=device_name)
 
