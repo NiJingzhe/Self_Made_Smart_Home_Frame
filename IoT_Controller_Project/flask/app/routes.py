@@ -70,10 +70,13 @@ def device_page(device_name, control_type):
 
     times = 0
     return_message = my_receiver.receive()
-    while (return_message == False) and (times < 1000):
+    while (return_message == False) and (times < 10):
         return_message = my_receiver.receive()
         times += 1
 
+
+    if return_message == False:
+        return "设备未连接！"
 
     device_state = return_message['state']
     if 'value' in return_message.keys():
@@ -88,11 +91,13 @@ def device_page(device_name, control_type):
                 command_message = {"device_name":device_name,"cmd":"close"}
                 my_sender.broadcast(command_message)
                 return render_template("switch.html", state=device_state, device_name=device_name)
-            else:
+            elif request.form['button'] == "打开":
                 device_state = "打开"
                 command_message = {"device_name":device_name,"cmd":"open"}
                 my_sender.broadcast(command_message)
                 return render_template("switch.html", state=device_state, device_name=device_name)
+            elif request.form['button'] == "返回控制中心":
+                return redirect("/index")
         else:
             return render_template("switch.html", state=device_state, device_name=device_name)
 

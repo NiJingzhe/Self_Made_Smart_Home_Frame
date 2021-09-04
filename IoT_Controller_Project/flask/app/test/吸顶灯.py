@@ -17,6 +17,7 @@ s.bind(('', RECVPORT))
 print('Listening for broadcast at ', s.getsockname())
 
 while True:
+    print("自身状态： ",state)
     data, address = s.recvfrom(65535)
     message = json.loads(data.decode('utf-8'))
     print('message received from Server{}:{}'.format(address, data.decode('utf-8')))
@@ -28,5 +29,4 @@ while True:
             state == '关闭'
         if message['cmd'] == 'open':
             state = '打开'
-        s.sendto(json.dumps({"state":state}).encode('utf-8'),(address[0],SENDPORT))
 
