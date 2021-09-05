@@ -85,21 +85,32 @@ def device_page(device_name, control_type):
 
     if control_type == "switch":
         
+        if device_state == "打开":
+            switch_value = "关闭"
+        else:
+            switch_value = "打开"
+
         if request.method == "POST":
             if request.form['button'] == "打开":
-                device_state = "关闭"
-                command_message = {"device_name":device_name,"cmd":"close"}
-                my_sender.broadcast(command_message)
-                return render_template("switch.html", state=device_state, device_name=device_name)
-            elif request.form['button'] == "打开":
-                device_state = "打开"
                 command_message = {"device_name":device_name,"cmd":"open"}
                 my_sender.broadcast(command_message)
-                return render_template("switch.html", state=device_state, device_name=device_name)
+
+                device_state = "打开"
+                switch_value = "关闭"
+
+                return render_template("switch.html", state=device_state, device_name=device_name,value=switch_value)
+            elif request.form['button'] == "关闭":
+                command_message = {"device_name":device_name,"cmd":"close"}
+                my_sender.broadcast(command_message)
+
+                device_state = "关闭"
+                switch_value = "打开"
+
+                return render_template("switch.html", state=device_state, device_name=device_name,value=switch_value)
             elif request.form['button'] == "返回控制中心":
                 return redirect("/index")
         else:
-            return render_template("switch.html", state=device_state, device_name=device_name)
+            return render_template("switch.html", state=device_state, device_name=device_name,value=switch_value)
 
 
     elif control_type == "switch&slider":
