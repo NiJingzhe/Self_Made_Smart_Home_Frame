@@ -13,7 +13,7 @@ from app.receiver import receiver
 
 
 my_home = home(owner_="Lil-Dinosaur")
-my_sender = sender(HOST_IP='192.168.1.255',PORT=4000)
+my_sender = sender(HOST_IP='192.168.12.255',PORT=4000)
 my_receiver = receiver(PORT=4001)
 
 # 建立路由，通过路由可以执行其覆盖的方法，可以多个路由指向同一个方法。
