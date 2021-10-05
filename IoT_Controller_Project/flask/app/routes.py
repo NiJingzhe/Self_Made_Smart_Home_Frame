@@ -81,7 +81,6 @@ def device_page(device_name, control_type):
     
     ##print("\n \n \n \n \n "+re.text+" \n \n \n \n")
 
-    ##注意！re.text的值本身是一个str！这里是 '{"device_name": "Central", "command": "feedback", "result": {"device_state": "\u5173\u95ed", "device_value":"", "task_state": "finished"}}'
     feedback_message=json.loads(re.text)
 
     device_state = feedback_message["result"]["device_state"]
@@ -165,7 +164,6 @@ def api_send_command_to_device():
         return json.dumps({"result":"no args!"}).encode('utf8')
 
     get_data = request.args
-    ##print("\n \n \n \n",get_data,"\n \n \n \n \n \n \n")
 
     command_message = {"device_name":get_data["device_name"],"command":get_data["command"]}
     my_sender.broadcast(command_message)
