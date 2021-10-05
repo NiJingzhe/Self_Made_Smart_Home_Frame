@@ -24,10 +24,21 @@ while True:
     
     if message['device_name'] == device_name:
         
-        if message['cmd'] == "get_state":
-            s.sendto(json.dumps({"state":state}).encode('utf-8'),(address[0],SENDPORT))
-        if message['cmd'] == "close":
+        if message['command'] == "get_state":
+            s.sendto(json.dumps({"device_name":"Central",
+                                "command":"feedback",
+                                "result":{"device_state":state,"device_value":"","task_state":"finished"}}
+                                ).encode('utf-8'),(address[0],SENDPORT))
+        if message['command'] == "close":
             state = "关闭"
-        if message['cmd'] == "open":
+            s.sendto(json.dumps({"device_name":"Central",
+                                "command":"feedback",
+                                "result":{"device_state":state,"device_value":"","task_state":"finished"}}
+                                ).encode('utf-8'),(address[0],SENDPORT))
+        if message['command'] == "open":
             state = "打开"
+            s.sendto(json.dumps({"device_name":"Central",
+                                "command":"feedback",
+                                "result":{"device_state":state,"device_value":"","task_state":"finished"}}
+                                ).encode('utf-8'),(address[0],SENDPORT))
         print("自身状态： ",state)

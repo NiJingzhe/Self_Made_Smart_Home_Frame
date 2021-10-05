@@ -6,7 +6,7 @@ class sender:
 
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     PORT = 4000
-    HOST = '192.168.12.255'
+    HOST = '192.168.255.255'
 
     def __init__(self, HOST_IP, PORT):
         self.HOST = HOST_IP
