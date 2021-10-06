@@ -8,11 +8,14 @@ from app.home import home
 from app.device import device
 from app.sender import sender
 from app.receiver import receiver
+
 import requests
 import json
 
 
+
 my_home = home(owner_="Lil-Dinosaur")
+
 my_sender = sender(HOST_IP='192.168.12.255',PORT=4000)
 my_receiver = receiver(PORT=4001)
 
@@ -178,5 +181,6 @@ def api_send_command_to_device():
         return json.dumps({"result":"no feedback!"}).encode('utf-8')
     else:
         return json.dumps(feedback_message).encode('utf-8')
+
 
 

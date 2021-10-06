@@ -1,5 +1,5 @@
-from app.__init__ import device_in_home
-from app.__init__ import db
+from app.Data_Base import device_in_home
+from app.Data_Base import db 
 class home:
 
     def __init__(self, owner_):
