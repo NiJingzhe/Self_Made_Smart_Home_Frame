@@ -25,7 +25,7 @@ def home_page():
                                        device_list_=my_home.device_list)
             else:
 
-                return redirect(url_for('error.lack_info_err'))
+                return redirect(url_for('error/error.lack_info_err'))
 
         elif request.form['button'] == "删除设备":
 
