@@ -1,5 +1,6 @@
 from flask import Flask
-
+import os
+#from flask_sqlalchemy import SQLAlchemy as sqlal
 
 
 def create_app():
@@ -17,6 +18,8 @@ def create_app():
     app.register_blueprint(error)
     from .blue_print.api import api
     app.register_blueprint(api)
+
+    #db = sqlal(app) 
 
     app.app_context().push()
 

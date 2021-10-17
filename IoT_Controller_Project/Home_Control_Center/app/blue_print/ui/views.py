@@ -89,9 +89,9 @@ def device_page(device_name, control_type):
 
                 if result == "no feedback":
                     return "no feedback, please check the device!"
-                    '''elif not (result["task_state"] == "finished" or result["device_state"] == u"打开"):
+                elif not (result["task_state"] == "finished" or result["device_state"] == u"打开"):
                     print('\n \n',"ui print: device_state not match on open",'\n \n')
-                    return "some error occured when device process the task, please check the device!"'''
+                    return "some error occured when device process the task, please check the device!"
                 else:
                     device_state = result["device_state"]
                     switch_value = "关闭"
@@ -109,9 +109,9 @@ def device_page(device_name, control_type):
 
                 if result == "no feedback":
                     return "no feedback, please check the device!"
-                    '''elif not (result["task_state"] == "finished" or result["device_state"] == u"关闭"):
+                elif not (result["task_state"] == "finished" or result["device_state"] == u"关闭"):
                     print('\n \n',"ui print: device_state not match on close",'\n \n')
-                    return "some error occured when device process the task, please check the device!"'''
+                    return "some error occured when device process the task, please check the device!"
                 else:
                     device_state = result["device_state"]
                     switch_value = "打开"
