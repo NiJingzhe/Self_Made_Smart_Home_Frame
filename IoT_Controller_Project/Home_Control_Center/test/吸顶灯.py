@@ -41,4 +41,5 @@ while True:
                                 "command":"feedback",
                                 "result":{"device_state":state,"device_value":"","task_state":"finished"}}
                                 ).encode('utf-8'),(address[0],SENDPORT))
+                                
         print("自身状态： ",state)
