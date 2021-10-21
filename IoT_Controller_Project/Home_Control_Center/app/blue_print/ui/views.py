@@ -21,17 +21,17 @@ def home_page():
 
                 my_home.add_device(device_)
 
-                return render_template('ui/home.html', owner_name=my_home.owner,
+                return render_template('home.html', owner_name=my_home.owner,
                                        device_list_=my_home.device_list)
             else:
 
-                return redirect(url_for('error/error.lack_info_err'))
+                return redirect(url_for('error.lack_info_err'))
 
         elif request.form['button'] == "删除设备":
 
             my_home.del_device(request.form['device_name'])
 
-            return render_template('ui/home.html', owner_name=my_home.owner,
+            return render_template('home.html', owner_name=my_home.owner,
                                    device_list_=my_home.device_list)
 
         elif request.form['button'] in my_home.device_list:
@@ -41,7 +41,7 @@ def home_page():
 
     else:
 
-        return render_template('ui/home.html', owner_name=my_home.owner,
+        return render_template('home.html', owner_name=my_home.owner,
                                device_list_=my_home.device_list)
 
 
@@ -90,13 +90,13 @@ def device_page(device_name, control_type):
                 if result == "no feedback":
                     return "no feedback, please check the device!"
                 elif not (result["task_state"] == "finished" or result["device_state"] == u"打开"):
-                    print('\n \n',"ui print: device_state not match on open",'\n \n')
+                    #print('\n \n',"ui print: device_state not match on open",'\n \n')
                     return "some error occured when device process the task, please check the device!"
                 else:
                     device_state = result["device_state"]
                     switch_value = "关闭"
 
-                return render_template("ui/switch.html", state=device_state, device_name=device_name,value=switch_value)
+                return render_template("switch.html", state=device_state, device_name=device_name,value=switch_value)
 
             elif request.form['button'] == "关闭":
 
@@ -110,17 +110,17 @@ def device_page(device_name, control_type):
                 if result == "no feedback":
                     return "no feedback, please check the device!"
                 elif not (result["task_state"] == "finished" or result["device_state"] == u"关闭"):
-                    print('\n \n',"ui print: device_state not match on close",'\n \n')
+                    #print('\n \n',"ui print: device_state not match on close",'\n \n')
                     return "some error occured when device process the task, please check the device!"
                 else:
                     device_state = result["device_state"]
                     switch_value = "打开"
 
-                return render_template("ui/switch.html", state=device_state, device_name=device_name,value=switch_value)
+                return render_template("switch.html", state=device_state, device_name=device_name,value=switch_value)
             elif request.form['button'] == "返回控制中心":
                 return redirect(url_for('ui.home_page'))
         else:
-            return render_template("ui/switch.html", state=device_state, device_name=device_name,value=switch_value)
+            return render_template("switch.html", state=device_state, device_name=device_name,value=switch_value)
 
 
     elif control_type == "switch&slider":
