@@ -4,6 +4,7 @@
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 #include <WString.h>
+#include "webpage/wifi_setting_html.h"
 using namespace std;
 
 //const int led = LED_BUILTIN;
@@ -14,21 +15,7 @@ private:
     String ssid;
     String passwd;
     ESP8266WebServer server;
-    const String postForms = "<html>\
-                                <head>\
-                                    <title>配网界面</title>\
-                                    <style>\
-                                        body { background-color: #cccccc; font-family: Arial, Helvetica, Sans-Serif; Color: #000088; }\
-                                    </style>\
-                                </head>\
-                                <body>\
-                                    <h1>输入WiFi的ssid和密码</h1><br>\
-                                    <form method=\"post\" action=\"/setwifi/\">\
-                                        <input type=\"text\" name=\"ssid\"}\'><br>\
-                                        <input type=\"text\" name=\"passwd\"}\'><br>\
-                                        <input type=\"submit\" value=\"Submit\">\
-                                </body>\
-                            </html>";
+    String postForms = wifi_setting_html;
 
     set_wifi_server(unsigned int port):port(port),server(ESP8266WebServer(port)){}
 
@@ -51,7 +38,14 @@ private:
                                     </style>\
                                 </head>\
                                 <body>\
-                                    <h4>你设置的WiFi名称为：" + this->ssid + "密码为：" + this->passwd + "</h4>" +
+                                    <h4>你设置的WiFi名称为：" + this->ssid + "密码为：" + this->passwd + "</h4>" + '\n' + 
+                                    "<script type=\"text/javascript\">\
+                                        setInterval("myInterval()",3000);//1000为1秒钟
+                                        function myInterval()
+                                        {
+                                            window.location.href=\"/\"
+                                        }\
+                                    </script>" + '\n' +
                                 "</body>\
                              </html>"
             this->server.send(200,"text/plain",message);
