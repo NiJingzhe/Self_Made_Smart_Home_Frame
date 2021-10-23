@@ -14,4 +14,4 @@ class sender{
     	SEND_udp.write(message);
     	SEND_udp.endPacket();
 	}
-}
+};

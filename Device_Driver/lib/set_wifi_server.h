@@ -17,7 +17,10 @@ private:
     ESP8266WebServer server;
     String postForms = wifi_setting_html;
 
-    set_wifi_server(unsigned int port):port(port),server(ESP8266WebServer(port)){}
+    set_wifi_server(unsigned int port):port(port),server(ESP8266WebServer(port)){
+        this->ssid = "";
+        this->passwd = "";
+    }
 
     void handleRoot() {
         this->server.send(200, "text/html", postForms);
@@ -30,6 +33,7 @@ private:
             //String message = "POST form was:\n";
             this->ssid = this->server.arg(0);
             this->passwd = this->server.arg(1);
+            Serial.println(this->ssid, this->passwd);
             String message = "<html>\
                                 <head>\
                                     <title>配网界面</title>\
@@ -57,11 +61,14 @@ private:
         this->server.on("/",handleRoot);
         this->server.on("/set_wifi/",set_wifi);
         this->server.begin();
-        this->server.handleClint(); 
+    }
+
+    void run(){
+        this->server.handleClint();
     }
 
     String get_ssid(){ return this->ssid; }
     String get_passwd(){ return this->passwd; }
 
-}
+};
 

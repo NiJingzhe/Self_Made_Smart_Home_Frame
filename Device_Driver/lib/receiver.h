@@ -25,4 +25,4 @@ private:
 		JSONVar message = JSON.prase(RECV_buffer)
 		return message;
 	}
-}
+};
