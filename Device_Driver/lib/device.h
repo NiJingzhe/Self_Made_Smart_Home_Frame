@@ -27,19 +27,9 @@ private:
 		SEND_port(SEND_port_),RECV_port(RECV_port_),server(set_wifi_server(server_port_))
 		SEND_udp(WiFiUDP()),RECV_udp(WiFiUDP())
 		{
-			
-			//WiFi.mode(WIFI_STA);
+
 			WiFi.softAP(this->ssid);
 			this->server.start_server();
-		/*	while (WiFi.status() != WL_CONNECTED) {
-				Serial.print('.');
-				delay(500);
-			}
-			Serial.print("Connected! IP address: ");
-			Serial.println(WiFi.localIP()); */
-
-			//this->SEND_udp.begin(this->SEND_port);
-			//this->RECV_udp.begin(this->RECV_port);
 		}
 
 		void run_server(){
