@@ -9,8 +9,8 @@ class sender{
 
 	sender(){}
 	
-	void send_message(WiFiUdp SEND_upd,WiFiUdp RECV_upd,char message[]){		
-		SEND_udp.beginPacket(RECV_udp.remoteIP(), remote_port);
+	void send_message(WiFiUdp SEND_upd,WiFiUdp RECV_upd,char message[],int remotePort){		
+		SEND_udp.beginPacket(RECV_udp.remoteIP(), remotePort);
     	SEND_udp.write(message);
     	SEND_udp.endPacket();
 	}

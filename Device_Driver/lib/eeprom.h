@@ -18,6 +18,12 @@ class rom{
         }
     }
 
-    bool write_data(){}
+    void write_String_data(int addr,String data){
+        EEPROM.write(addr,data.length());
+        for(int i = 0; i<data.length(); i++){
+            EEPROM.write(addr+1+i,data[i]);
+        }
+        EEPROM.commit();
+    }
 
 };

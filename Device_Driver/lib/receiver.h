@@ -8,19 +8,19 @@ using namespace std;
 class receiver{
 private:
 	char RECV_buffer[UDP_TX_PACKET_MAX_SIZE+1];
-	
+public:	
 	receiver(){}
 	
-	JSONVar receive(WiFiUdp udp){
-		int packetSize = Udp.parsePacket();
+	JSONVar receive(WiFiUdp RECV_udp){
+		int packetSize = RECV_udp.parsePacket();
 		if (packetSize) {
-		Serial.printf("Received packet of size %d from %s:%d\n    (to %s:%d, free heap = %d B)\n",
+		/*Serial.printf("Received packet of size %d from %s:%d\n    (to %s:%d, free heap = %d B)\n",
 		              packetSize,
 		              udp.remoteIP().toString().c_str(), udp.remotePort(),
 		              udp.destinationIP().toString().c_str(), udp.localPort(),
-		              ESP.getFreeHeap());
+		              ESP.getFreeHeap()); */
 		
-		int n = udp.read(RECV_buffer, UDP_TX_PACKET_MAX_SIZE);
+		int n = RECV_udp.read(RECV_buffer, UDP_TX_PACKET_MAX_SIZE);
 		RECV_buffer[n] = 0;
 		JSONVar message = JSON.prase(RECV_buffer)
 		return message;

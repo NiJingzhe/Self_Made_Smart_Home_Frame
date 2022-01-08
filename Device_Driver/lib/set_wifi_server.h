@@ -16,7 +16,8 @@ private:
     String passwd;
     ESP8266WebServer server;
     String postForms = wifi_setting_html;
-
+    
+public:
     set_wifi_server(unsigned int port):port(port),server(ESP8266WebServer(port)){
         this->ssid = "";
         this->passwd = "";
@@ -33,8 +34,9 @@ private:
             //String message = "POST form was:\n";
             this->ssid = this->server.arg(0);
             this->passwd = this->server.arg(1);
-            Serial.println(this->ssid, this->passwd);
-            String message = "<html>\
+            //Serial.println(this->ssid, this->passwd);
+            String message = "";
+            message = "<html>\
                                 <head>\
                                     <title>配网界面</title>\
                                     <style>\
@@ -42,15 +44,10 @@ private:
                                     </style>\
                                 </head>\
                                 <body>\
-                                    <h4>你设置的WiFi名称为：" + this->ssid + "密码为：" + this->passwd + "</h4>" + '\n' + 
-                                    "<script type=\"text/javascript\">\
-                                        setInterval("myInterval()",3000);//1000为1秒钟
-                                        function myInterval()
-                                        {
-                                            window.location.href=\"/\"
-                                        }\
-                                    </script>" + '\n' +
-                                "</body>\
+                                    <h4>the name of your WiFi：" + this->ssid + " and the password is：" + this->passwd + "</h4>" + '\n' + 
+                                    "<form method=\"POST\" action=\"/\">\
+                                        <input type=\"submit\" value=\"Back\">\
+                                </body>\
                              </html>"
             this->server.send(200,"text/plain",message);
             //server.send(200, "text/plain", message);
