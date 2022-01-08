@@ -9,6 +9,8 @@ class rom{
         EEPROM.begin(size+1);
     }
 
+    ~rom(){}
+
     uint8_t read_data(int addr){
         if(addr>0 && addr<size){
             return EEPROM.read(addr);

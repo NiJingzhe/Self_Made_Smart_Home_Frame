@@ -26,7 +26,8 @@ private:
 
 public:	
 
-	
+	String device_state;
+	int device_value;
 
 	device(
 		char * name_,
@@ -39,7 +40,12 @@ public:
 		SENDER(sender()),RECEIVER(receiver()),
 		ROM(rom(4095)),
 		need_set_wifi(false)
-		{}
+		{
+			SEND_udp.begin(SEND_port);
+			RECV_udp.begin(RECV_port);
+			this->device_value = 0;
+			this->device_state = "close";
+		}
 		
 		~device();
 
@@ -99,12 +105,29 @@ void device::set_wifi_server_run(){
 }
 
 void device::run(){
-	if(need_set_wifi)
+	if(this->need_set_wifi)
 		return;
-	SEND_udp.begin(SEND_port);
-	RECV_udp.begin(RECV_port);
 
+	JSONVar command = receiver.receive(RECV_udp);
+	if(command.hasOwnProperty("device_name"))
+		if(command["device_name"] == this->name){
+			bool task_state;
+			task_state = processer.process(command);
+		}
+			
 	
+	JSONVar feedback;
+	feedback["device_name"] = this->name;
+	feedback["command"] = "feedback";
+	JSONVar result;
+	result["device_state"] = this->device_state;
+	result["device_value"] = this->device_value;
+	result["task_state"] = task_state;
+	feedback["result"] = result;
+
+	String feedback_string = JSON.stringify(feedback);
+
+	sender.send(SEND_udp,RECV_udp,feedback_string,this->SEND_port);
 
 }
 

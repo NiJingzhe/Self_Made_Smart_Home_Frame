@@ -6,7 +6,19 @@
 	],
 	"settings": {
 		"files.associations": {
-			"functional": "cpp"
+			"functional": "cpp",
+			"utility": "cpp",
+			"deque": "cpp",
+			"initializer_list": "cpp",
+			"list": "cpp",
+			"map": "cpp",
+			"set": "cpp",
+			"unordered_map": "cpp",
+			"vector": "cpp",
+			"xhash": "cpp",
+			"xstring": "cpp",
+			"xtree": "cpp",
+			"xutility": "cpp"
 		}
 	}
 }

@@ -10,7 +10,7 @@ private:
 	char RECV_buffer[UDP_TX_PACKET_MAX_SIZE+1];
 public:	
 	receiver(){}
-	
+	~receiver(){}
 	JSONVar receive(WiFiUdp RECV_udp){
 		int packetSize = RECV_udp.parsePacket();
 		if (packetSize) {

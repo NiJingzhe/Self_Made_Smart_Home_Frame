@@ -8,8 +8,8 @@ using namespace std;
 class sender{
 
 	sender(){}
-	
-	void send_message(WiFiUdp SEND_upd,WiFiUdp RECV_upd,char message[],int remotePort){		
+	~sender(){}
+	void send_message(WiFiUdp SEND_upd,WiFiUdp RECV_upd,String message,int remotePort){		
 		SEND_udp.beginPacket(RECV_udp.remoteIP(), remotePort);
     	SEND_udp.write(message);
     	SEND_udp.endPacket();
