@@ -1,7 +1,6 @@
 #define LED_OUT 14
 
-#include "device.h"
-using namespace std;
+#include "lib/device.h"
 
 device test_led("test_led",4001,4000,80);
 

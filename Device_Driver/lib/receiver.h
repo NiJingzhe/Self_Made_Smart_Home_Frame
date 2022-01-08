@@ -3,7 +3,6 @@
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
 #include <Arduino_JSON.h>
-using namespace std;
 
 class receiver{
 private:
@@ -11,8 +10,9 @@ private:
 public:	
 	receiver(){}
 	~receiver(){}
-	JSONVar receive(WiFiUdp RECV_udp){
+	JSONVar receive(WiFiUDP RECV_udp){
 		int packetSize = RECV_udp.parsePacket();
+		JSONVar message = NULL;
 		if (packetSize) {
 		/*Serial.printf("Received packet of size %d from %s:%d\n    (to %s:%d, free heap = %d B)\n",
 		              packetSize,
@@ -20,9 +20,11 @@ public:
 		              udp.destinationIP().toString().c_str(), udp.localPort(),
 		              ESP.getFreeHeap()); */
 		
-		int n = RECV_udp.read(RECV_buffer, UDP_TX_PACKET_MAX_SIZE);
-		RECV_buffer[n] = 0;
-		JSONVar message = JSON.prase(RECV_buffer)
+			int n = RECV_udp.read(RECV_buffer, UDP_TX_PACKET_MAX_SIZE);
+			RECV_buffer[n] = 0;
+			message = JSON.parse(RECV_buffer);
+			
+		}
 		return message;
 	}
 };
