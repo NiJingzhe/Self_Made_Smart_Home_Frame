@@ -1,23 +1,20 @@
 #pragma once
-#include <map>
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 #include <WString.h>
-#include "webpage/wifi_setting_html.h"
 
 //const int led = LED_BUILTIN;
 
 class set_wifi_server{
-private:
+public:
     unsigned int port;
     String ssid;
     String passwd;
     ESP8266WebServer server;
-    String postForms = wifi_setting_html;
     
 public:
-    set_wifi_server(unsigned int port, void (*handle_root)(), void (*set_wifi)()):port(port),server(ESP8266WebServer(port)){
+    set_wifi_server(void (*handle_root)(), void (*set_wifi)()):server(ESP8266WebServer(80)){
         this->ssid = "";
         this->passwd = "";
         this->server.on("/",(*handle_root));
