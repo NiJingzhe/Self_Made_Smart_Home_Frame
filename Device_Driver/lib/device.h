@@ -18,7 +18,7 @@ public:
 	receiver RECEIVER;
 	String ssid,passwd;
 	unsigned int RECV_port,SEND_port;
-	char * name;
+	String name;
 	rom ROM;
 	command_processer processer;
 
@@ -69,12 +69,15 @@ bool device::check_ssid_and_passwd(){
 		}
 
 
+
 	if((this->ssid != "")){
+		Serial.println("ssid: "+this->ssid+" password: "+this->passwd);
 		this->need_set_wifi = false;
 		WiFi.begin(this->ssid,this->passwd);
 		return true;
 	}
 	else{
+		Serial.println("Starting Set WiFi Server");
 		this->need_set_wifi = true;
 		return false;
 	}
@@ -88,7 +91,7 @@ void device::run(){
 	JSONVar command = RECEIVER.receive(RECV_udp);
 	bool task_state;
 	if(command.hasOwnProperty("device_name"))
-		if((const char *)command["device_name"] == this->name){
+		if((const char *)command["device_name"] == this->name.c_str()){
 			task_state = this->processer.process(command);
 		}
 			

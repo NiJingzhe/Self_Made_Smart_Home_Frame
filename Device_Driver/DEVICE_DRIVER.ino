@@ -19,7 +19,7 @@ void setup(){
 
     if(!test_led.check_ssid_and_passwd()){
         WiFi.mode(WIFI_AP_STA);
-	    WiFi.softAP(test_led.name);
+	    WiFi.softAP(test_led.name,"",11,0,4);
         SERVER.start_server();
     }
 
@@ -31,8 +31,7 @@ void setup(){
 void loop(){
     if(test_led.need_set_wifi){
         SERVER.run();
-		test_led.ssid = SERVER.get_ssid();
-		test_led.passwd = SERVER.get_passwd();
+
 		if(test_led.ssid != ""){
 			test_led.ROM.write_String_data(1,test_led.ssid);
 			test_led.ROM.write_String_data(256,test_led.passwd);
@@ -65,6 +64,9 @@ static void set_wifi() {
 
 		SERVER.ssid = SERVER.server.arg(0);
 		SERVER.passwd = SERVER.server.arg(1);
+
+		test_led.ssid = SERVER.get_ssid();
+		test_led.passwd = SERVER.get_passwd();
 		//Serial.println(this->ssid, this->passwd);
 		String webpage = "";
 		webpage = "<html>\
