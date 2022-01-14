@@ -14,7 +14,7 @@ public:
     ~rom(){}
 
     uint8_t read_data(int addr){
-        if(addr>0 && addr<this->size){
+        if((addr>0) && (addr<this->size)){
             return EEPROM.read(addr);
         }
         else{

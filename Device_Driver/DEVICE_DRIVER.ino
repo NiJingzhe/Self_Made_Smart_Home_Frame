@@ -9,47 +9,44 @@ static void handleRoot();
 static void set_wifi();
 static void open_led();
 static void close_led();
+static void send_state();
 
 set_wifi_server SERVER(handleRoot,set_wifi);
 device test_led("test_led",4001,4000);
 
 void setup(){
-    pinMode(LED_OUT, OUTPUT);
-    digitalWrite(LED_OUT, LOW);
+	pinMode(LED_BUILTIN,OUTPUT)
+    digitalWrite(LED_BUILTIN, LOW);
+	WiFi.mode(WIFI_AP_STA);
 
-    if(!test_led.check_ssid_and_passwd()){
-        WiFi.mode(WIFI_AP_STA);
-	    WiFi.softAP(test_led.name,"",11,0,4);
-        SERVER.start_server();
-    }
+	WiFi.softAP(test_led.name,test_led.name,11,0,4);
+	SERVER.start_server();
 
 
     test_led.bind("open",open_led);
     test_led.bind("close",close_led);
+	test_led.bind("get_state",send_state);
 }
 
 void loop(){
-    if(test_led.need_set_wifi){
-        SERVER.run();
 
-		if(test_led.ssid != ""){
-			test_led.ROM.write_String_data(1,test_led.ssid);
-			test_led.ROM.write_String_data(256,test_led.passwd);
-			test_led.need_set_wifi = false;
-			WiFi.softAPdisconnect(true);
-			WiFi.begin(test_led.ssid,test_led.passwd);
-		}
-    }
+    SERVER.run();
 		
     test_led.run();
 }
 
 static void open_led(){
-    digitalWrite(LED_OUT,HIGH);
+    digitalWrite(LED_BUILTIN,HIGH);
+	test_led.device_state = "打开";
 }
 
 static void close_led(){
-    digitalWrite(LED_OUT,LOW);
+    digitalWrite(LED_BUILTIN,LOW);
+	test_led.device_state = "关闭";
+}
+
+static void send_state(){
+	return;
 }
 
 static void handleRoot() {
@@ -64,14 +61,12 @@ static void set_wifi() {
 
 		SERVER.ssid = SERVER.server.arg(0);
 		SERVER.passwd = SERVER.server.arg(1);
-
-		test_led.ssid = SERVER.get_ssid();
-		test_led.passwd = SERVER.get_passwd();
-		//Serial.println(this->ssid, this->passwd);
+		
+		
 		String webpage = "";
 		webpage = "<html>\
 							<head>\
-								<title>配网界面</title>\
+								<title>SetPage</title>\
 								<style>\
 									body { background-color: #cccccc; font-family: Arial, Helvetica, Sans-Serif; Color: #000088; }\
 								</style>\
@@ -83,6 +78,18 @@ static void set_wifi() {
 							</body>\
 							</html>";
 		SERVER.server.send(200,"text/plain",webpage);
+
+		Serial.println(SERVER.ssid+"\n"+ SERVER.passwd);
+
+		test_led.ssid = SERVER.get_ssid();
+		test_led.passwd = SERVER.get_passwd();
+
+		if(test_led.ssid != ""){
+			test_led.ROM.write_String_data(1,test_led.ssid);
+			test_led.ROM.write_String_data(256,test_led.passwd);
+			//WiFi.softAPdisconnect(true);
+			WiFi.begin(test_led.ssid,test_led.passwd);
+		}
 		//server.send(200, "text/plain", message);
 	}
 }

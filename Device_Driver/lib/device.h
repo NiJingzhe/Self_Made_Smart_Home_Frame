@@ -43,7 +43,8 @@ public:
 			SEND_udp.begin(SEND_port);
 			RECV_udp.begin(RECV_port);
 			this->device_value = 0;
-			this->device_state = "close";
+			this->device_state = "关闭";
+			Serial.begin(115200);
 		}
 		
 		~device();
@@ -85,14 +86,14 @@ bool device::check_ssid_and_passwd(){
 }
 
 void device::run(){
-	if(this->need_set_wifi)
-		return;
+	//if(this->need_set_wifi)
+	//	return;
 
 	JSONVar command = RECEIVER.receive(RECV_udp);
-	bool task_state;
+	String task_state;
 	if(command.hasOwnProperty("device_name"))
 		if((const char *)command["device_name"] == this->name.c_str()){
-			task_state = this->processer.process(command);
+			task_state = this->processer.process(command)? "finished" : "unfinished";
 		}
 			
 	
@@ -101,7 +102,7 @@ void device::run(){
 	feedback["command"] = "feedback";
 	JSONVar result;
 	result["device_state"] = this->device_state;
-	result["device_value"] = this->device_value;
+	result["device_value"] = "";
 	result["task_state"] = task_state;
 	feedback["result"] = result;
 
