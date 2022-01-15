@@ -15,8 +15,8 @@ set_wifi_server SERVER(handleRoot,set_wifi);
 device test_led("test_led",4001,4000);
 
 void setup(){
-	pinMode(LED_BUILTIN,OUTPUT)
-    digitalWrite(LED_BUILTIN, LOW);
+	pinMode(LED_BUILTIN,OUTPUT);
+    digitalWrite(LED_BUILTIN, HIGH);
 	WiFi.mode(WIFI_AP_STA);
 
 	WiFi.softAP(test_led.name,test_led.name,11,0,4);
@@ -36,12 +36,12 @@ void loop(){
 }
 
 static void open_led(){
-    digitalWrite(LED_BUILTIN,HIGH);
+    digitalWrite(LED_BUILTIN,LOW);
 	test_led.device_state = "打开";
 }
 
 static void close_led(){
-    digitalWrite(LED_BUILTIN,LOW);
+    digitalWrite(LED_BUILTIN,HIGH);
 	test_led.device_state = "关闭";
 }
 

@@ -90,10 +90,11 @@ void device::run(){
 	//	return;
 
 	JSONVar command = RECEIVER.receive(RECV_udp);
-	String task_state;
+	//String task_state;
 	if(command.hasOwnProperty("device_name"))
 		if((const char *)command["device_name"] == this->name.c_str()){
-			task_state = this->processer.process(command)? "finished" : "unfinished";
+			Serial.println((const char *)command["command"]);
+			this->processer.process(command);
 		}
 			
 	
@@ -103,7 +104,7 @@ void device::run(){
 	JSONVar result;
 	result["device_state"] = this->device_state;
 	result["device_value"] = "";
-	result["task_state"] = task_state;
+	result["task_state"] = "finished";
 	feedback["result"] = result;
 
 	String feedback_string = JSON.stringify(feedback);
