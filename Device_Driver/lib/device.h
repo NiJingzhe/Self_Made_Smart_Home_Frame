@@ -58,18 +58,17 @@ bool device::check_ssid_and_passwd(){
 
 	int length_of_ssid = ROM.read_data(1);
 	for(int i = 2; i<=1+length_of_ssid; i++){
-		this->ssid += ROM.read_data(i);
+		this->ssid += (String)ROM.read_data(i);
 	}
 
 	int length_of_password = ROM.read_data(256);
 	if(length_of_password == 0) 
 		this->passwd = "";
 	else
-		for(int i = 257; i<=256+length_of_password; i++){
-			this->passwd += ROM.read_data(i);
-		}
+		for(int i = 257; i<=256+length_of_password; i++)
+			this->passwd += (String)ROM.read_data(i);
 
-
+	
 
 	if((this->ssid != "")){
 		Serial.println("ssid: "+this->ssid+" password: "+this->passwd);
