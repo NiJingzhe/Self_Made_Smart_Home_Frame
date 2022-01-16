@@ -56,17 +56,22 @@ public:
 
 bool device::check_ssid_and_passwd(){
 
-	int length_of_ssid = ROM.read_data(1);
+	int length_of_ssid = (int)ROM.read_data(1);
+	//int index = 1;
 	for(int i = 2; i<=1+length_of_ssid; i++){
-		this->ssid += (String)ROM.read_data(i);
+		this->ssid += (char)ROM.read_data(i);
+		//index++;
 	}
 
-	int length_of_password = ROM.read_data(256);
+	int length_of_password = (int)ROM.read_data(256);
+	//index = 1;
 	if(length_of_password == 0) 
 		this->passwd = "";
 	else
-		for(int i = 257; i<=256+length_of_password; i++)
-			this->passwd += (String)ROM.read_data(i);
+		for(int i = 257; i<=256+length_of_password; i++){
+			this->passwd += (char)ROM.read_data(i);
+		}
+			
 
 	
 

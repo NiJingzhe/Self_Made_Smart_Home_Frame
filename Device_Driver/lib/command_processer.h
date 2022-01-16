@@ -16,6 +16,7 @@ public:
         if(command.hasOwnProperty("command")){
             iter = action_list.find((const char *)command["command"]);
             if(iter != action_list.end()){
+                Serial.println(iter->first);
                 (*(iter->second))();
                 return true;
             }

@@ -20,6 +20,9 @@ void setup(){
 	WiFi.mode(WIFI_AP_STA);
 
 	test_led.check_ssid_and_passwd();
+
+	delay(500);
+
 	WiFi.softAP(test_led.name,test_led.name,11,0,4);
 	SERVER.start_server();
 
@@ -31,9 +34,9 @@ void setup(){
 
 void loop(){
 
+	test_led.run();
     SERVER.run();
 		
-    test_led.run();
 }
 
 void open_led(){
