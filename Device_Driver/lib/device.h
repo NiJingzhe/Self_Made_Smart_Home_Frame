@@ -92,29 +92,34 @@ bool device::check_ssid_and_passwd(){
 void device::run(){
 	//if(this->need_set_wifi)
 	//	return;
-
+	bool task_state = false;
 	JSONVar command = RECEIVER.receive(RECV_udp);
 	//String task_state;
-	if(command.hasOwnProperty("device_name"))
+	if(command.hasOwnProperty("device_name")){
+
+		Serial.print("device_name in command: ");
+		Serial.println((const char *)command["device_name"]);
+		Serial.print("device_name actually is: ");
+		Serial.println(this->name);
+
 		if((const char *)command["device_name"] == this->name.c_str()){
 			Serial.println((const char *)command["command"]);
-			this->processer.process(command);
+			task_state = this->processer.process(command);
+
+			JSONVar feedback;
+			feedback["device_name"] = this->name;
+			feedback["command"] = "feedback";
+			JSONVar result;
+			result["device_state"] = this->device_state;
+			result["device_value"] = "";
+			result["task_state"] = task_state ? "finished" : "unfinish";
+			feedback["result"] = result;
+
+			String feedback_string = JSON.stringify(feedback);
+
+			SENDER.send_message(SEND_udp,RECV_udp,feedback_string,this->SEND_port);
 		}
-			
-	
-	JSONVar feedback;
-	feedback["device_name"] = this->name;
-	feedback["command"] = "feedback";
-	JSONVar result;
-	result["device_state"] = this->device_state;
-	result["device_value"] = "";
-	result["task_state"] = "finished";
-	feedback["result"] = result;
-
-	String feedback_string = JSON.stringify(feedback);
-
-	SENDER.send_message(SEND_udp,RECV_udp,feedback_string,this->SEND_port);
-
+	}
 }
 
 void device::bind(char * command, void (*pf)()){
