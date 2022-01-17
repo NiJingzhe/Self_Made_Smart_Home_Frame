@@ -1,18 +1,16 @@
 {
     "configurations": [
+
         {
-            "name": "Win64",
+            "name": "Linux",
             "includePath": [
-                "${default}",
-                "E:\\InstalledAPP\\ArduinoLLC.ArduinoIDE_1.8.45.0_x86\\libraries\\",
-                "C:\\Users\\Ni Jingzhe\\Documents\\ArduinoData\\packages\\esp8266\\hardware\\esp8266\\3.0.2\\libraries\\",
-                "C:\\Users\\Ni Jingzhe\\Documents\\ArduinoData\\staging\\libraries\\Arduino_JSON-0.1.0\\"
+                "${workspaceFolder}/**"
             ],
-            "windowsSdkVersion": "10.0.19041.0",
-            "compilerPath": "E:\\InstalledAPP\\VS2019\\VC\\Tools\\MSVC\\14.28.29910\\bin\\Hostx64\\x64\\cl.exe",
-            "cStandard": "c17",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "windows-msvc-x64"
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu17",
+            "cppStandard": "c++20",
+            "intelliSenseMode": "linux-gcc-arm"
         }
     ],
     "version": 4
