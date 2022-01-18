@@ -2,15 +2,15 @@
     "configurations": [
 
         {
-            "name": "Linux",
+            "name": "Win64",
             "includePath": [
                 "${workspaceFolder}/**"
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/gcc",
+            "compilerPath": "E:\\InstalledAPP\\Dev-Cpp\\MinGW64\\bin\\gcc",
             "cStandard": "gnu17",
             "cppStandard": "c++20",
-            "intelliSenseMode": "linux-gcc-arm"
+            "intelliSenseMode": "windows-gcc-x64"
         }
     ],
     "version": 4

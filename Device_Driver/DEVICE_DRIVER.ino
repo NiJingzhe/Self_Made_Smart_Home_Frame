@@ -18,6 +18,8 @@ device test_led("test_led",4001,4000);
 void setup(){
 
 	//we need to initialize the pin mode of the board first
+	Serial.println("\n");
+	Serial.println("\n");
 	pinMode(LED_BUILTIN,OUTPUT);
     digitalWrite(LED_BUILTIN, HIGH);
 

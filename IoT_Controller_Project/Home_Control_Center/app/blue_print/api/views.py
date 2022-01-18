@@ -10,11 +10,11 @@ from . import my_sender
 def api_send_command_to_device():
 
     if len(request.args) == 0:
-        return json.dumps({"result":"no args!"}).encode('utf-8')
+        return json.dumps({"result":"no args!"})
 
     get_data = request.args
 
-    command_message = {"device_name":get_data["device_name"].encode('utf-8'),"command":get_data["command"].encode('utf-8')}
+    command_message = {"device_name":get_data["device_name"],"command":get_data["command"]}
     my_sender.broadcast(command_message)
 
     times = 0
@@ -26,6 +26,6 @@ def api_send_command_to_device():
         print("api print: feedback_message is: ",feedback_message)
 
     if feedback_message == False:
-        return json.dumps({"result":"no feedback!"}).encode('utf-8')
+        return json.dumps({"result":"no feedback!"})
     else:
-        return json.dumps(feedback_message).encode('utf-8')
+        return json.dumps(feedback_message)
