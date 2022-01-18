@@ -13,7 +13,7 @@ void send_state();
 
 //each device has one set_wifi_server and a abstract concept of the device
 set_wifi_server SERVER(handleRoot,set_wifi);
-device test_led("test_led",4001,4000);
+device test_led("开发板LED",4001,4000);
 
 void setup(){
 
@@ -55,6 +55,7 @@ void open_led(){
     digitalWrite(LED_BUILTIN,LOW);
 	test_led.device_state = "打开";
 	Serial.println("do open");
+	//delay(100);
 	return;
 }
 
@@ -62,11 +63,13 @@ void close_led(){
     digitalWrite(LED_BUILTIN,HIGH);
 	test_led.device_state = "关闭";
 	Serial.println("do close");
+	//delay(100);
 	return;
 }
 
 void send_state(){
 	Serial.println("do get_state");
+	//delay(100);
 	return;
 }
 

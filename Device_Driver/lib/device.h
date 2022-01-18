@@ -18,7 +18,7 @@ public:
 	receiver RECEIVER;
 	String ssid,passwd;
 	unsigned int RECV_port,SEND_port;
-	String name;
+	char * name;
 	rom ROM;
 	command_processer processer;
 
@@ -56,14 +56,14 @@ public:
 
 bool device::check_ssid_and_passwd(){
 
-	int length_of_ssid = (int)ROM.read_data(1);
+	int length_of_ssid = ROM.read_data(1);
 	//int index = 1;
 	for(int i = 2; i<=1+length_of_ssid; i++){
 		this->ssid += (char)ROM.read_data(i);
 		//index++;
 	}
 
-	int length_of_password = (int)ROM.read_data(256);
+	int length_of_password = ROM.read_data(256);
 	//index = 1;
 	if(length_of_password == 0) 
 		this->passwd = "";
@@ -97,13 +97,21 @@ void device::run(){
 	//String task_state;
 	if(command.hasOwnProperty("device_name")){
 
-		Serial.print("device_name in command: ");
+	/*	Serial.print("device_name in command: ");
 		Serial.println((const char *)command["device_name"]);
 		Serial.print("device_name actually is: ");
-		Serial.println(this->name);
+		Serial.println(this->name);  */
 
-		if((const char *)command["device_name"] == this->name.c_str()){
+		//因为一些奇奇怪怪的原因，如果把command中的device_name字段直接转换类型后比较就会出问题，
+		//于是把device的name封装为一个json对象，即反向操作
+		JSONVar tmpjson;
+		tmpjson["device_name"] = this->name;
+		//String tmp = (command["device_name"] == tmpjson["device_name"]) ? "true" : "false";
+		//Serial.println(tmp);
+
+		if(command["device_name"] == tmpjson["device_name"]){
 			Serial.println((const char *)command["command"]);
+			Serial.println("\n");
 			task_state = this->processer.process(command);
 
 			JSONVar feedback;
@@ -123,6 +131,8 @@ void device::run(){
 }
 
 void device::bind(char * command, void (*pf)()){
+	//JSONVar tmp;
+	//tmp["command"] = command;
 	this->processer.action_list.insert(make_pair(command,(*pf)));
 }
 
