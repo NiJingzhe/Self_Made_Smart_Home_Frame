@@ -111,7 +111,7 @@ void device::run(){
 
 		if(command["device_name"] == tmpjson["device_name"]){
 			Serial.println((const char *)command["command"]);
-			Serial.println("\n");
+			//Serial.println("\n");
 			task_state = this->processer.process(command);
 
 			JSONVar feedback;

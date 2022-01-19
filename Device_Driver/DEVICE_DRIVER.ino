@@ -20,6 +20,7 @@ void setup(){
 	//we need to initialize the pin mode of the board first
 	Serial.println("\n");
 	Serial.println("\n");
+	
 	pinMode(LED_BUILTIN,OUTPUT);
     digitalWrite(LED_BUILTIN, HIGH);
 
@@ -30,7 +31,7 @@ void setup(){
 	test_led.check_ssid_and_passwd();
 
 	//wait for 500ms
-	delay(500);
+	//delay(500);
 
 	//open AP and wifi setting server
 	WiFi.softAP(test_led.name,test_led.name,11,0,4);

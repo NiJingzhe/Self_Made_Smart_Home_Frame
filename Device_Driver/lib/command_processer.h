@@ -12,38 +12,22 @@ public:
     ~command_processer(){}
 
     bool process(JSONVar command){
-       /* std::map<JSONVar,call_back_func>::iterator iter;
-        if(command.hasOwnProperty("command")){
-            JSONVar tmp_command;
-            tmp_command["command"] = command["command"];
-            iter = action_list.find(tmp_command);
-            //find the command
-            if(iter != action_list.end()){
-                //and then run the call back function
-                Serial.println((const char *)(iter->first));
-                (*(iter->second))();
-                return true;
-            }
-            else{
-                return false;
-            } 
-        }    */
         if(command.hasOwnProperty("command")){
             for (auto &iter : action_list){
                 JSONVar tmp_command;
                 tmp_command["command"] = iter.first;
                 if(tmp_command["command"] == command["command"]){
+                    Serial.println("Now running call back function..............")
                     (*(iter.second))();
                     return true;
-                    delay(500);
+                    //delay(500);
                 }
                 else{
+                    Serial.println("Cannot find any command matched!!!!!")
                     return false;
-                    delay(500);
+                    //delay(500);
                 }
             }
-        }
-        
+        } 
     }
-
 };
