@@ -17,13 +17,13 @@ public:
                 JSONVar tmp_command;
                 tmp_command["command"] = iter.first;
                 if(tmp_command["command"] == command["command"]){
-                    Serial.println("Now running call back function..............")
+                    Serial.println("Now running call back function..............");
                     (*(iter.second))();
                     return true;
                     //delay(500);
                 }
                 else{
-                    Serial.println("Cannot find any command matched!!!!!")
+                    Serial.println("Cannot find any command matched!!!!!");
                     return false;
                     //delay(500);
                 }

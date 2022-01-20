@@ -9,7 +9,7 @@ void set_wifi();
 void open_led();
 void close_led();
 void send_state();
-
+void quit_board(){return;}
 
 //each device has one set_wifi_server and a abstract concept of the device
 set_wifi_server SERVER(handleRoot,set_wifi);
@@ -41,6 +41,7 @@ void setup(){
     test_led.bind("open",open_led);
     test_led.bind("close",close_led);
 	test_led.bind("get_state",send_state);
+	test_led.bind("quit",quit_board);
 }
 
 void loop(){
