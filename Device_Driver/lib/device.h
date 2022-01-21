@@ -1,7 +1,7 @@
 #pragma once
 
 #define FUCNTION_BTN_IN 5 
-#define FUCNTION_BTN_OUT 4
+#define FUNCTION_BTN_OUT 4
 
 #include <map>
 #include <ESP8266WiFi.h>
@@ -44,9 +44,10 @@ public:
 		ROM(rom(4095)),processer(command_processer()),
 		need_set_wifi(false)
 		{
-			pinMode(FUCNTION_BTN_OUT,OUTPUT);
+			/*pinMode(LED_BUILTIN, OUTPUT);
 			pinMode(FUCNTION_BTN_IN,INPUT);
-			digitalWrite(FUCNTION_BTN_OUT,HIGH);
+			pinMode(FUNCTION_BTN_OUT,OUTPUT);
+			digitalWrite(FUNCTION_BTN_OUT,HIGH);*/
 
 			SEND_udp.begin(SEND_port);
 			RECV_udp.begin(RECV_port);
@@ -98,14 +99,15 @@ bool device::check_ssid_and_passwd(){
 
 void device::run(){
 
+	/*Serial.println(digitalRead(FUCNTION_BTN_IN));
 	if((!ap_state) && (digitalRead(FUCNTION_BTN_IN) == HIGH)){
-		Serial.println("HIGH in FBI");
+		Serial.println("HIGH in FB and openAP");
 		this->openAP();
 	}
 	if((ap_state) && (digitalRead(FUCNTION_BTN_IN) == HIGH)){
-		Serial.println("LOW in FBI");
+		Serial.println("HIGH in FBI and disconnectAP");
 		this->disconnectAP();
-	}
+	} */
 
 	bool task_state = false;
 	JSONVar command = RECEIVER.receive(RECV_udp);
@@ -145,10 +147,14 @@ void device::bind(const char * command, void (*pf)()){
 
 void device::openAP(){
 	WiFi.softAP(this->name,this->name,11,0,4);
+	digitalWrite(LED_BUILTIN,LOW);
+	this->ap_state = true;
 }
 
 void device::disconnectAP(){
 	WiFi.disconnect();
+	digitalWrite(LED_BUILTIN,HIGH);
+	this->ap_state = false;
 }
 
 device::~device(){}
