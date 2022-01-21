@@ -2,6 +2,7 @@
 
 #include "lib/device.h"
 #include "lib/set_wifi_server.h"
+ADC_MODE(ADC_VCC)
 
 //declare call_back functions
 void handleRoot();
@@ -9,7 +10,8 @@ void set_wifi();
 void open_led();
 void close_led();
 void send_state();
-void quit_board(){return;}
+
+//action open,close,get_state;
 
 //each device has one set_wifi_server and a abstract concept of the device
 set_wifi_server SERVER(handleRoot,set_wifi);
@@ -21,31 +23,37 @@ void setup(){
 	Serial.println("\n");
 	Serial.println("\n");
 	
-	pinMode(LED_BUILTIN,OUTPUT);
-    digitalWrite(LED_BUILTIN, HIGH);
+	pinMode(LED_OUT,OUTPUT);
+    digitalWrite(LED_OUT,LOW);
 
 	//and then set wifi mode
 	WiFi.mode(WIFI_AP_STA);
 
-	//then check if we have stored previous ssid and password
+	//then check if we have stored previous ssid and password.If yes, we will connect to this wifi
 	test_led.check_ssid_and_passwd();
 
 	//wait for 500ms
 	//delay(500);
 
 	//open AP and wifi setting server
-	WiFi.softAP(test_led.name,test_led.name,11,0,4);
+	test_led.openAP();
 	SERVER.start_server();
 
 	//bind commands with the callback functions
     test_led.bind("open",open_led);
-    test_led.bind("close",close_led);
-	test_led.bind("get_state",send_state);
-	test_led.bind("quit",quit_board);
+	test_led.bind("close",close_led);
+	test_led.bind("get_state",send_state); 
+
+	
+	/* if (!test_led.processer.action_list.empty()) {
+        for (auto i = test_led.processer.action_list.begin(); i != test_led.processer.action_list.end(); ++i) {
+            Serial.println(i->first);
+			//Serial.println(i->second);
+        }
+    }  */
 }
 
 void loop(){
-
 	//run the server and sub device
 	SERVER.run();
 	test_led.run();	
@@ -54,25 +62,19 @@ void loop(){
 
 //call back functions:
 void open_led(){
-    digitalWrite(LED_BUILTIN,LOW);
+    digitalWrite(LED_OUT,HIGH);
 	test_led.device_state = "打开";
 	Serial.println("do open");
-	//delay(100);
-	return;
 }
 
 void close_led(){
-    digitalWrite(LED_BUILTIN,HIGH);
+    digitalWrite(LED_OUT,LOW);
 	test_led.device_state = "关闭";
 	Serial.println("do close");
-	//delay(100);
-	return;
 }
 
 void send_state(){
 	Serial.println("do get_state");
-	//delay(100);
-	return;
 }
 
 void handleRoot() {

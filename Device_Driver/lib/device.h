@@ -1,5 +1,8 @@
 #pragma once
 
+#define FUCNTION_BTN_IN 5 
+#define FUCNTION_BTN_OUT 4
+
 #include <map>
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
@@ -21,6 +24,7 @@ public:
 	char * name;
 	rom ROM;
 	command_processer processer;
+	bool ap_state = false;
 
 public:	
 
@@ -40,6 +44,10 @@ public:
 		ROM(rom(4095)),processer(command_processer()),
 		need_set_wifi(false)
 		{
+			pinMode(FUCNTION_BTN_OUT,OUTPUT);
+			pinMode(FUCNTION_BTN_IN,INPUT);
+			digitalWrite(FUCNTION_BTN_OUT,HIGH);
+
 			SEND_udp.begin(SEND_port);
 			RECV_udp.begin(RECV_port);
 			this->device_value = 0;
@@ -51,7 +59,9 @@ public:
 
 		bool check_ssid_and_passwd();
 		void run();
-		void bind(char * command,void (*pf)());
+		void bind(const char * command,void (*pf)());
+		void openAP();
+		void disconnectAP();
 };
 
 bool device::check_ssid_and_passwd(){
@@ -71,9 +81,6 @@ bool device::check_ssid_and_passwd(){
 		for(int i = 257; i<=256+length_of_password; i++){
 			this->passwd += (char)ROM.read_data(i);
 		}
-			
-
-	
 
 	if((this->ssid != "")){
 		Serial.println("ssid: "+this->ssid+" password: "+this->passwd);
@@ -90,28 +97,28 @@ bool device::check_ssid_and_passwd(){
 }
 
 void device::run(){
-	//if(this->need_set_wifi)
-	//	return;
+
+	if((!ap_state) && (digitalRead(FUCNTION_BTN_IN) == HIGH)){
+		Serial.println("HIGH in FBI");
+		this->openAP();
+	}
+	if((ap_state) && (digitalRead(FUCNTION_BTN_IN) == HIGH)){
+		Serial.println("LOW in FBI");
+		this->disconnectAP();
+	}
+
 	bool task_state = false;
 	JSONVar command = RECEIVER.receive(RECV_udp);
 	//String task_state;
 	if(command.hasOwnProperty("device_name")){
 
-	/*	Serial.print("device_name in command: ");
-		Serial.println((const char *)command["device_name"]);
-		Serial.print("device_name actually is: ");
-		Serial.println(this->name);  */
-
 		//因为一些奇奇怪怪的原因，如果把command中的device_name字段直接转换类型后比较就会出问题，
 		//于是把device的name封装为一个json对象，即反向操作
 		JSONVar tmpjson;
 		tmpjson["device_name"] = this->name;
-		//String tmp = (command["device_name"] == tmpjson["device_name"]) ? "true" : "false";
-		//Serial.println(tmp);
 
 		if(command["device_name"] == tmpjson["device_name"]){
 			Serial.println((const char *)command["command"]);
-			//Serial.println("\n");
 			task_state = this->processer.process(command);
 
 			JSONVar feedback;
@@ -130,10 +137,18 @@ void device::run(){
 	}
 }
 
-void device::bind(char * command, void (*pf)()){
+void device::bind(const char * command, void (*pf)()){
 	//JSONVar tmp;
 	//tmp["command"] = command;
-	this->processer.action_list.insert(make_pair(command,(*pf)));
+	this->processer.action_list.insert(std::make_pair(command, pf));
+}
+
+void device::openAP(){
+	WiFi.softAP(this->name,this->name,11,0,4);
+}
+
+void device::disconnectAP(){
+	WiFi.disconnect();
 }
 
 device::~device(){}
