@@ -31,3 +31,6 @@ public:
     }
 
 };
+
+
+//addr:1 length->1, 2~2+length<-ssid 

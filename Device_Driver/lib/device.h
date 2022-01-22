@@ -124,7 +124,7 @@ void device::run(){
 			task_state = this->processer.process(command);
 
 			JSONVar feedback;
-			feedback["device_name"] = this->name;
+			feedback["device_name"] = "Center";
 			feedback["command"] = "feedback";
 			JSONVar result;
 			result["device_state"] = this->device_state;

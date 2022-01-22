@@ -44,6 +44,7 @@ void setup(){
 	test_led.bind("close",close_led);
 	test_led.bind("get_state",send_state); 
 
+	//test_led.setup();
 	
 	/* if (!test_led.processer.action_list.empty()) {
         for (auto i = test_led.processer.action_list.begin(); i != test_led.processer.action_list.end(); ++i) {
