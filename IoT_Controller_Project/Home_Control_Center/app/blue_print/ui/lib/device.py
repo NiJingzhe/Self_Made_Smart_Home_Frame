@@ -1,4 +1,4 @@
-
+#encoding: utf-8
 class device():
     
     def __init__(self,name,control_type):

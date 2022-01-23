@@ -1,3 +1,4 @@
+#encoding: utf-8
 from flask import Blueprint
 from .lib.home import home
 

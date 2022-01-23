@@ -1,3 +1,4 @@
+#encoding: utf-8
 from . import error
 from flask import render_template
 from flask import request

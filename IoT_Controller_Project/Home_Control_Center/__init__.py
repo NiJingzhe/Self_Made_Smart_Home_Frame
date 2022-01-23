@@ -1,3 +1,4 @@
+#encoding: utf-8
 #从app模块中导入app应用
 from flask import Flask
 from .app import app

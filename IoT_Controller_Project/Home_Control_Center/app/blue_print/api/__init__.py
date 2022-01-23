@@ -1,3 +1,4 @@
+#encoding: utf-8
 from flask import Blueprint
 from .lib.sender import sender
 from .lib.receiver import receiver

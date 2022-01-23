@@ -1,3 +1,4 @@
+#encoding: utf-8
 class home:
 
     def __init__(self, owner_):

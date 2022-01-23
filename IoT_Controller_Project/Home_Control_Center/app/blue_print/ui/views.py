@@ -1,3 +1,4 @@
+#encoding: utf-8
 from . import ui
 from . import my_home
 from .lib.device import device
