@@ -52,10 +52,10 @@ def device_page(device_name, control_type):
     # broadcast and get device state from Device_Controller
     headers = {
         'content-type': "application/json;charset=UTF-8",
-        'dahai-access-token': 'SQwNSp',
-        'x-trailer-biz-product-line': 'k12'
+        #'dahai-access-token': 'SQwNSp',
+        #'x-trailer-biz-product-line': 'k12'
     }
-    
+    #如果配置了nginx+uwsgi的生产环境，端口号按照nginx配置写
     api = "http://"+"127.0.0.1:5000"+url_for('api.api_send_command_to_device')
     #POST请求
     post_args = {"device_name":device_name,"command":"get_state"}
