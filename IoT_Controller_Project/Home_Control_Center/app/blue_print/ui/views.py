@@ -56,7 +56,9 @@ def device_page(device_name, control_type):
         #'x-trailer-biz-product-line': 'k12'
     }
     #如果配置了nginx+uwsgi的生产环境，端口号按照nginx配置写
-    api = "http://"+"127.0.0.1:5000"+url_for('api.api_send_command_to_device')
+    #my nginx is running on port 80,so I write :80 here,
+    #if you want to run this code by "flask run",then you should write :5000
+    api = "http://"+"127.0.0.1:80"+url_for('api.api_send_command_to_device')
     #POST请求
     post_args = {"device_name":device_name,"command":"get_state"}
     re=requests.post(api,
