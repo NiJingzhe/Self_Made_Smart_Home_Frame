@@ -5,12 +5,16 @@
 全栈自建的智能家庭框架
 
 #### 实现原理
+##### 一、服务端
+1.  首先是建立了`home,device`两个类。`home`含有`device_list`,而`device`则内含自身的`control_type`(这个东西决定了该设备的控制方式)。
+2.  在Home Control Center的webapp中选择设备,并更新设备状态后，作为家庭中枢的树莓派向局域网中广播消息，由对应的智能设备认领，并处理命令。
+3.  经过以上几个步骤实现前端webapp控制家庭设备的目的。
 
-1.  首先是建立了`home,device`两个类。
-    `home`含有`device_list`,而`device`则内含自身的`control_type`(这个东西决定了该设备的控制方式)
-2.  在HHC的webapp中选择房间,设备,并更新设备状态后,作为家庭中枢的树莓派向局域网中广播消息 `{device_name,state}`,并加入任务队列;由对应的Device_Controller认领,并加入任务队列.
-4.  Device_Controller处理任务,完成后更新任务队列.中枢接收到Device_Controller的完成消息后更新任务队列.
-5.  经过以上几个步骤实现前端webapp控制家庭设备的目的.
+##### 二、硬件端
+1. 抽象出`device`类，类中包括两个udp服务器（发送和接收）,一个命令解析器（`command_processer`），一个ROM（`eeprom`）。
+2. 抽象出`set_wifi_service`类，即配网服务器，运行配网界面。
+3. 首先，`device`会检查`eeprom`中是否存有已知的WiFi信息，若果有就连上。然后无条件打开AP和配网服务器，为随时可以切换WiFi。然后是设备引脚初始化。接着是用`device`的`bind`函数绑定命令和回调函数。 最后就是在`loop`函数中run起`device`和`service`。
+4. `device`的`run`函数中，会监听局域网内的udp数据包，然后按照json格式解包，判断`"device"`属性是否和自己匹配，如果是的那么将`"command"`属性放到`processer`的`process`函数中进行处理，即按照指令在`processer`的`action_list`中找到对应的回调函数并执行，最后构建feedback数据包发送会服务端。
 
 #### 安装教程
 暂时没有呢。。。。
