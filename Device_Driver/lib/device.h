@@ -146,7 +146,7 @@ void device::bind(const char * command, void (*pf)()){
 }
 
 void device::openAP(){
-	WiFi.softAP(this->name,this->name,11,0,4);
+	WiFi.softAP(this->name);
 	digitalWrite(LED_BUILTIN,LOW);
 	this->ap_state = true;
 }
