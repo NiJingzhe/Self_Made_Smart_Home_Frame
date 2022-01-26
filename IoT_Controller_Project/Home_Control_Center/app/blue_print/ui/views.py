@@ -128,3 +128,6 @@ def device_page(device_name, control_type):
 
     elif control_type == "switch&slider":
         return ""
+        
+    else:
+    	return None
