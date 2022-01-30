@@ -40,6 +40,11 @@ def home_page():
             return redirect(url_for('ui.device_page', device_name=request.form['button'],
                                     control_type=my_home.device_list[request.form['button']]))
 
+        else:
+            return render_template('home.html', owner_name=my_home.owner,
+                               device_list_=my_home.device_list)
+
+
     else:
 
         return render_template('home.html', owner_name=my_home.owner,
