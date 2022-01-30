@@ -4,8 +4,9 @@ import json,requests
 from flask import request
 from . import my_receiver
 from . import my_sender
-from .lib.Data_Base import device_in_home
-from app import db
+from ...model import device_in_home
+from ...model import db
+
 
 #向指定设备发送指令
 @api.route('/api/send_command_to_device',methods=['POST'])
@@ -32,26 +33,35 @@ def api_send_command_to_device():
     else:
         return json.dumps(feedback_message)
 
-@api.route('/api/write_to_db',method = ['POST'])
+#DB operator api
+@api.route('/api/write_to_db',methods = ['POST'])
 def api_write_to_db():
 
     if len(request.args) == 0:
         return json.dumps({"result":"no args!"})
 
     get_data = request.args
-    device_log = device_in_home(get_data['device_name'],get_data['control_type'])
-    db.session.add(device_log)
-    db.commit()
-    return json.dumps({"result":"add successfully"})
 
-@api.route('/api/del_from_db',method = ['POST'])
+    if device_in_home.query.filter_by(device_name=get_data['device_name']).first() == None:
+        device_log = device_in_home(get_data['device_name'],get_data['control_type'])
+        db.session.add(device_log)
+        db.session.commit()
+        return json.dumps({"result":"add successfully"})
+    else:
+        return json.dumps({"result":"failed! Repeatedly add the same device!"})
+
+@api.route('/api/del_from_db',methods = ['POST'])
 def api_del_from_db():
 
     if len(request.args) == 0:
         return json.dumps({"result":"no args!"})
     
     get_data = request.args
-    device_log = device_in_home.query.filter_by(username=get_data['device_name'])
-    db.session.delete(device_log)
-    db.commit()
-    return json.dumps({"result":"delet successfully"})
+
+    if  device_in_home.query.filter_by(device_name=get_data['device_name']).first() != None:
+        device_log = device_in_home.query.filter_by(device_name=get_data['device_name']).first()
+        db.session.delete(device_log)
+        db.session.commit()
+        return json.dumps({"result":"delet successfully"})
+    else:
+        return json.dumps({"result":"failed! A non-existent log cannot be deleted!"})

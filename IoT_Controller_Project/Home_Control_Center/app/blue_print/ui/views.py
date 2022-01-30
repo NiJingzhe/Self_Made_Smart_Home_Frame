@@ -8,6 +8,10 @@ from flask import redirect
 from flask import url_for
 import json,requests
 
+#根据nginx配置写啊同志们
+#直接flask run就写5000
+port = "5000"
+
 @ui.route('/', methods=['GET', 'POST'])
 @ui.route('/index', methods=['GET', 'POST'])
 def home_page():
@@ -22,6 +26,26 @@ def home_page():
 
                 my_home.add_device(device_)
 
+                #设备入库
+                headers = {
+                    'content-type': "application/json;charset=UTF-8",
+                }
+                #如果配置了nginx+uwsgi的生产环境，端口号按照nginx配置写
+                #my nginx is running on port 80,so I write :80 here,
+                #if you want to run this code by "flask run",then you should write :5000
+                api = "http://"+"127.0.0.1:" + port +url_for('api.api_write_to_db')
+                #POST请求
+                post_args = {"device_name":device_.name,"control_type":device_.control_type}
+                re=requests.post(api,
+                                params = post_args,
+                                headers=headers, verify=False)
+    
+                print('\n \n',"ui print: re.text is: ",re.text,'\n \n')
+
+                feedback_message = json.loads(re.text)
+                if feedback_message['result'] == "failed! Repeatedly add the same device!":
+                    return redirect(url_for('error.repeatedly_add_device_err'))
+
                 return render_template('home.html', owner_name=my_home.owner,
                                        device_list_=my_home.device_list)
             else:
@@ -31,6 +55,26 @@ def home_page():
         elif request.form['button'] == "删除设备":
 
             my_home.del_device(request.form['device_name'])
+
+            #设备出库
+            headers = {
+                'content-type': "application/json;charset=UTF-8",
+            }
+            #如果配置了nginx+uwsgi的生产环境，端口号按照nginx配置写
+            #my nginx is running on port 80,so I write :80 here,
+            #if you want to run this code by "flask run",then you should write :5000
+            api = "http://"+"127.0.0.1:" + port +url_for('api.api_del_from_db')
+            #POST请求
+            post_args = {"device_name":request.form["device_name"]}
+            re=requests.post(api,
+                            params = post_args,
+                            headers=headers, verify=False)
+
+            print('\n \n',"ui print: re.text is: ",re.text,'\n \n')
+
+            feedback_message = json.loads(re.text)
+            if feedback_message['result'] == "failed! A non-existent log cannot be deleted!":
+                return redirect(url_for('error.non_existent_device_del_err'))
 
             return render_template('home.html', owner_name=my_home.owner,
                                    device_list_=my_home.device_list)
@@ -57,13 +101,11 @@ def device_page(device_name, control_type):
     # broadcast and get device state from Device_Controller
     headers = {
         'content-type': "application/json;charset=UTF-8",
-        #'dahai-access-token': 'SQwNSp',
-        #'x-trailer-biz-product-line': 'k12'
     }
     #如果配置了nginx+uwsgi的生产环境，端口号按照nginx配置写
     #my nginx is running on port 80,so I write :80 here,
     #if you want to run this code by "flask run",then you should write :5000
-    api = "http://"+"127.0.0.1:80"+url_for('api.api_send_command_to_device')
+    api = "http://"+"127.0.0.1:"+ port +url_for('api.api_send_command_to_device')
     #POST请求
     post_args = {"device_name":device_name,"command":"get_state"}
     re=requests.post(api,

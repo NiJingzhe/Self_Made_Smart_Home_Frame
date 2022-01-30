@@ -2,7 +2,7 @@
 from flask import Flask
 import os
 from flask_sqlalchemy import SQLAlchemy as sqlal
-
+from . import db
 
 def create_app():
 
@@ -10,8 +10,8 @@ def create_app():
 
     basedir = os.path.abspath(os.path.dirname(__file__))
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'Home_Info.db')
-    app.config['SQLALCHEMY_MIGRATE_REPO'] = os.path.join(basedir, 'db_repository')
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+    #app.config['SQLALCHEMY_MIGRATE_REPO'] = os.path.join(basedir, 'db_repository')
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     from .blue_print.ui import ui
     app.register_blueprint(ui)
