@@ -4,8 +4,8 @@ from app import db
 
 
 class device_in_home(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    device_name = db.Column(db.String(255))
+    id = db.Column(db.IntegerField,primary_key=True)
+    device_name = db.Column(db.String(255), unique=True)
     control_type = db.Column(db.String(255))
 
     def __init__(self, device_name, control_type):
@@ -16,6 +16,3 @@ class device_in_home(db.Model):
     def __repr__(self):
 
         return '<Device %r %r>' % self.device_name % self.control_type
-
-
-db.create_all()
