@@ -34,6 +34,28 @@ def api_send_command_to_device():
         return json.dumps(feedback_message)
 
 #DB operator api
+@api.route('/api/get_device_info',methods = ['POST'])
+def api_get_device_info():
+
+    device_list = []
+
+    device_list = device_in_home.query.all()
+    result_dict = {}
+
+    if device_list != []:
+        
+        result_dict["device_num"] = len(device_list)
+        for i in range(0,len(device_list)):
+            device_dict = {}
+            device_dict["device_name"] = device_list[i].device_name
+            device_dict["control_type"] = device_list[i].control_type
+            result_dict[i] = device_dict
+    else:
+        result_dict['device_num'] = 0
+
+    return json.dumps({"result":result_dict})
+
+
 @api.route('/api/write_to_db',methods = ['POST'])
 def api_write_to_db():
 

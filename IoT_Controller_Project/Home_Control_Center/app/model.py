@@ -14,4 +14,4 @@ class device_in_home(db.Model):
 
     def __repr__(self):
 
-        return '<Device %r %r>' % self.device_name % self.control_type
+        return '<Device %s %s>' % (self.device_name,self.control_type)

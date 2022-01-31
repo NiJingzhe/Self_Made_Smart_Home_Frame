@@ -16,6 +16,33 @@ port = "5000"
 @ui.route('/index', methods=['GET', 'POST'])
 def home_page():
 
+    #获取设备列表
+    headers = {
+        'content-type': "application/json;charset=UTF-8",
+    }
+    #如果配置了nginx+uwsgi的生产环境，端口号按照nginx配置写
+    #my nginx is running on port 80,so I write :80 here,
+    #if you want to run this code by "flask run",then you should write :5000
+    api = "http://"+"127.0.0.1:" + port +url_for('api.api_get_device_info')
+    #POST请求
+    re=requests.post(api,
+                    headers=headers, verify=False)
+
+    print('\n \n',"ui print: re.text is: ",re.text,'\n \n')
+    
+    device_info = json.loads(re.text)["result"]
+
+    print(device_info,'\n')
+
+    tmp_device_dict_ = {}
+    if device_info["device_num"] != 0:
+        num = device_info["device_num"]
+        for i in range(0,num):
+            tmp_device_dict_[device_info[str(i)]["device_name"]] = device_info[str(i)]["control_type"]
+
+    my_home.device_list = tmp_device_dict_
+
+
     if request.method == 'POST':
 
         if request.form['button'] == "添加设备":
