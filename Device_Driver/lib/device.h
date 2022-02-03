@@ -24,11 +24,11 @@ public:
 	char * name;
 	rom ROM;
 	command_processer processer;
-	bool ap_state = false;
+	//bool ap_state = false;
 
 public:	
 
-	bool need_set_wifi;
+	//bool need_set_wifi;
 	String device_state;
 	int device_value;
 

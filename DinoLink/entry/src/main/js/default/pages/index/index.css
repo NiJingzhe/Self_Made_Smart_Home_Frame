@@ -1,0 +1,34 @@
+#wrapper {
+    flex-direction: column;
+    width: 100%;
+}
+
+#div1 {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #37e79b;
+    flex-wrap: wrap;
+    align-content: center;
+    flex-direction: column;
+}
+
+#image1 {
+    width: 186px;
+    height: 186px;
+}
+
+#text1 {
+    height: 36.432105552501376px;
+    width: 360px;
+    font-weight: lighter;
+    text-align: center;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: #ffffff;
+    min-font-size: 14px;
+    max-font-size: 20px;
+    max-lines: 1;
+}
+

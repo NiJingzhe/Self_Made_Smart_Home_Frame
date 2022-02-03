@@ -32,9 +32,6 @@ void setup(){
 	//then check if we have stored previous ssid and password.If yes, we will connect to this wifi
 	test_led.check_ssid_and_passwd();
 
-	//wait for 500ms
-	//delay(500);
-
 	//open AP and wifi setting server
 	test_led.openAP();
 	SERVER.start_server();
@@ -44,14 +41,6 @@ void setup(){
 	test_led.bind("close",close_led);
 	test_led.bind("get_state",send_state); 
 
-	//test_led.setup();
-	
-	/* if (!test_led.processer.action_list.empty()) {
-        for (auto i = test_led.processer.action_list.begin(); i != test_led.processer.action_list.end(); ++i) {
-            Serial.println(i->first);
-			//Serial.println(i->second);
-        }
-    }  */
 }
 
 void loop(){

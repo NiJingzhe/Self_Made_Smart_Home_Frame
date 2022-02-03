@@ -1,0 +1,52 @@
+#wrapper {
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+#div1 {
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+#div2 {
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    background-color: #37e79b;
+}
+
+#text1 {
+    height: 30px;
+    width: 121.72583287820862px;
+    margin-left: 15px;
+    font-size: 26px;
+    font-weight: lighter;
+    text-align: center;
+    color: #ffffff;
+}
+
+#div3 {
+    width: 100%;
+    height: 50px;
+    flex-grow: 1;
+}
+
+#list1 {
+    width: 150px;
+    height: 150px;
+    flex-grow: 1;
+    columns: 2;
+}
+
+#list-item2 {
+    width: 30px;
+    height: 100px;
+    margin: 10px;
+}
+

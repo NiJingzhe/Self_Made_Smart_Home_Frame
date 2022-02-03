@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "devicepage_devicePage",
+      "value": "devicepage_devicePage"
+    },
+    {
+      "name": "devicepage_description",
+      "value": "JS_Empty Ability"
+    },
+    {
+      "name": "widget_ability_description",
+      "value": "This is a WidgetAbility"
+    }
+  ]
+}
