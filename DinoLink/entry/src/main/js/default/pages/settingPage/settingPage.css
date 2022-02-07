@@ -1,0 +1,86 @@
+#wrapper {
+    flex-direction: column;
+    width: 100%;
+}
+
+#div1 {
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+#div2 {
+    width: 100%;
+    height: 50px;
+    background-color: #37e79b;
+    align-items: center;
+    justify-content: flex-start;
+    align-content: center;
+}
+
+#text1 {
+    height: 30px;
+    width: 360px;
+    color: #ffffffff;
+    font-size: 24px;
+    margin-left: 15px;
+}
+
+#div3 {
+    width: 100%;
+    height: 50px;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+#list1 {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+}
+
+#list-item1 {
+    width: 30px;
+    height: 50px;
+    column-span: 1;
+    margin: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#text2 {
+    height: 100%;
+    width: 25%;
+    font-size: 16px;
+    text-align: center;
+    flex-shrink: 1;
+    margin: 2px;
+}
+
+#input1 {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    font-size: 16px;
+    margin: 2px;
+}
+
+#div4 {
+    width: 100%;
+    height: 50px;
+    flex-direction: column;
+    padding: 5px;
+}
+
+#button1 {
+    width: 100%;
+    height: 20px;
+    flex-grow: 1;
+    background-color: #37e79b;
+    font-size: 18px;
+    font-weight: lighter;
+}
+
