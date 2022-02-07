@@ -3,9 +3,9 @@ apply plugin: 'com.huawei.ohos.app'
 
 //For instructions on signature configuration, see https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ide_debug_device-0000001053822404#section1112183053510
 ohos {
-    compileSdkVersion 7
+    compileSdkVersion 6
 }
-	
+
 buildscript {
     repositories {
         maven {
