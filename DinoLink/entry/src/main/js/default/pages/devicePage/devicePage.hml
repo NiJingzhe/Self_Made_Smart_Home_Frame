@@ -1,12 +1,9 @@
 <div id="wrapper">
     <div id="div1">
         <div id="div2">
-            <text id="text1">DinoLink</text>
+            <text id="text1">{{$t('strings.devicePage_title')}}</text>
+            <button id="button1" value="{{$t('strings.setting')}}" onclick="settingButtonClicked"></button>
         </div>
-        <div id="div3">
-            <list id="list1">
-                <list-item id="list-item2"></list-item>
-            </list>
-        </div>
+        <div id="div3"></div>
     </div>
 </div>
