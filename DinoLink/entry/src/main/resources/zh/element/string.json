@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "mainability_HelloWorld",
+      "value": "你好，世界"
+    },
+    {
+      "name": "widget_ability_description",
+      "value": "服务卡片"
+    },
+    {
+      "name": "start_up_text",
+      "value": "DinoLink  定能灵动生活"
+    },
+    {
+      "name": "entry_DevicePage",
+      "value": "entry_DevicePage"
+    },
+    {
+      "name": "devicepage_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "devicepage_HelloWorld",
+      "value": "你好，世界"
+    },
+    {
+      "name": "device_page_title",
+      "value": "DinoLink"
+    },
+    {
+      "name": "setting_button_text",
+      "value": "设置"
+    }
+  ]
+}

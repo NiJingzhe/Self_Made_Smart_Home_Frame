@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="200vp"
+    ohos:width="match_parent"
+    ohos:margin="10vp"
+    ohos:orientation="vertical"
+    ohos:alignment="start"
+    ohos:padding="10vp"
+    ohos:shadow_color="#77000000"
+    ohos:background_element="$graphic:background_ability_device_page_title_bar">
+
+    <Image
+        ohos:id="$+id:img"
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:clip_alignment="left"
+        ohos:layout_alignment="horizontal_center"
+        ohos:weight="0.5"/>
+
+    <Text
+        ohos:id="$+id:device_name"
+        ohos:weight="0.5"
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:text="设备名称"
+        ohos:text_alignment="start"
+        ohos:text_size="24fp"
+        ohos:text_color="#FFFFFFFF"/>
+
+</DirectionalLayout>

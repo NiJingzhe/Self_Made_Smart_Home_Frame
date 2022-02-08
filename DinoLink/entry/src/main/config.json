@@ -1,0 +1,97 @@
+{
+  "app": {
+    "bundleName": "com.dinolink.dinolink",
+    "vendor": "dinolink",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.dinolink.dinolink",
+    "name": ".MyApplication",
+    "mainAbility": "com.dinolink.dinolink.MainAbility",
+    "deviceType": [
+      "phone",
+      "tablet"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "metaData": {
+          "customizeData": [
+            {
+              "name": "hwc-theme",
+              "value": "androidhwext:style/Theme.Emui.NoTitleBar",
+              "extra":""
+            }
+          ]
+        },
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "visible": true,
+        "name": "com.dinolink.dinolink.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "formsEnabled": true,
+        "label": "$string:entry_MainAbility",
+        "type": "page",
+        "forms": [
+          {
+            "jsComponentName": "widget",
+            "isDefault": true,
+            "scheduledUpdateTime": "10:30",
+            "defaultDimension": "2*2",
+            "name": "widget",
+            "description": "This is a service widget",
+            "colorMode": "auto",
+            "type": "JS",
+            "supportDimensions": [
+              "2*2"
+            ],
+            "updateEnabled": true,
+            "updateDuration": 1
+          }
+        ],
+        "launchType": "standard"
+      },
+      {
+        "orientation": "unspecified",
+        "name": "com.dinolink.dinolink.DevicePage",
+        "icon": "$media:icon",
+        "description": "$string:devicepage_description",
+        "label": "$string:entry_DevicePage",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": "widget",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        },
+        "type": "form"
+      }
+    ]
+  }
+}

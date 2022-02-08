@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "mainability_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "widget_ability_description",
+      "value": "This is a WidgetAbility"
+    },
+    {
+      "name": "start_up_text",
+      "value": "DinoLink  Definitely Linking Your Life"
+    },
+    {
+      "name": "entry_DevicePage",
+      "value": "entry_DevicePage"
+    },
+    {
+      "name": "devicepage_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "devicepage_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "device_page_title",
+      "value": "DinoLink"
+    },
+    {
+      "name": "setting_button_text",
+      "value": "Setting"
+    }
+  ]
+}
