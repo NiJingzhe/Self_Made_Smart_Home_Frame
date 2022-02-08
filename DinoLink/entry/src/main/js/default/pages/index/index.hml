@@ -1,6 +1,0 @@
-<div id="wrapper">
-    <div id="div1">
-        <image id="image1" src="common/images/startup1.png"></image>
-        <text id="text1">{{$t('strings.start_up_text')}}</text>
-    </div>
-</div>
