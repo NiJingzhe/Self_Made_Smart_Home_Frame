@@ -33,22 +33,15 @@
         ohos:height="match_parent"
         ohos:width="match_parent"
         ohos:orientation="vertical"
+        ohos:alignment="center"
         ohos:padding="15vp">
 
-        <Text
-            ohos:id="$+id:device_state_text"
-            ohos:height="match_content"
-            ohos:width="match_parent"
-            ohos:text="$string:device_state_text"
-            ohos:text_alignment="vertical_center|start"
-            ohos:text_color="#FF007722"
-            ohos:text_size="20fp"/>
 
         <Switch
             ohos:id="$+id:device_switch"
-            ohos:height="40vp"
-            ohos:width="100vp"
-            ohos:text_size="20fp"
+            ohos:height="100vp"
+            ohos:width="250vp"
+            ohos:text_size="24fp"
             ohos:text_state_off="$string:switch_off_text"
             ohos:text_state_on="$string:switch_on_text"/>
 

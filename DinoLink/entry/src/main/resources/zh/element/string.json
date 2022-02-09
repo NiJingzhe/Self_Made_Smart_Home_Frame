@@ -58,11 +58,11 @@
     },
     {
       "name": "switch_on_text",
-      "value": "打开"
+      "value": "ON"
     },
     {
       "name": "switch_off_text",
-      "value": "关闭"
+      "value": "OFF"
     }
   ]
 }

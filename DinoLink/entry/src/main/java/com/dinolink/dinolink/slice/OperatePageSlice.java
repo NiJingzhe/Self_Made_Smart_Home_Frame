@@ -22,13 +22,10 @@ public class OperatePageSlice extends AbilitySlice {
         Text title = (Text) findComponentById(ResourceTable.Id_title_device_name);
         title.setText(deviceName);
 
-        Text deviceStateText = (Text) findComponentById(ResourceTable.Id_device_state_text);
-        deviceStateText.setText(deviceStateText.getText() + "关");
-
         // 开启状态下滑块的样式
         ShapeElement elementThumbOn = new ShapeElement();
         elementThumbOn.setShape(ShapeElement.OVAL);
-        elementThumbOn.setRgbColor(RgbColor.fromArgbInt(0xFFFFFFFF));
+        elementThumbOn.setRgbColor(RgbColor.fromArgbInt(0xDDFFFFFF));
         elementThumbOn.setCornerRadius(50);
         // 关闭状态下滑块的样式
         ShapeElement elementThumbOff = new ShapeElement();
@@ -52,11 +49,7 @@ public class OperatePageSlice extends AbilitySlice {
         deviceSwitch.setCheckedStateChangedListener(new AbsButton.CheckedStateChangedListener() {
             @Override
             public void onCheckedChanged(AbsButton button, boolean isChecked) {
-                if (isChecked) {
-                    deviceStateText.setText("设备状态: 开");
-                } else {
-                    deviceStateText.setText("设备状态: 关");
-                }
+
             }
         });
 
@@ -89,7 +82,6 @@ public class OperatePageSlice extends AbilitySlice {
 
     @Override
     public void onStop() {
-        Text deviceStateText = (Text) findComponentById(ResourceTable.Id_device_state_text);
-        deviceStateText.setText(ResourceTable.Id_device_state_text);
+        super.onStop();
     }
 }
