@@ -36,12 +36,12 @@ public class OperatePageSlice extends AbilitySlice {
         ShapeElement elementTrackOn = new ShapeElement();
         elementTrackOn.setShape(ShapeElement.RECTANGLE);
         elementTrackOn.setRgbColor(RgbColor.fromArgbInt(0xFF4DDB7C));
-        elementTrackOn.setCornerRadius(100);
+        elementTrackOn.setCornerRadius(400);
         // 关闭状态下轨迹样式
         ShapeElement elementTrackOff = new ShapeElement();
         elementTrackOff.setShape(ShapeElement.RECTANGLE);
         elementTrackOff.setRgbColor(RgbColor.fromArgbInt(0xFF808080));
-        elementTrackOff.setCornerRadius(100);
+        elementTrackOff.setCornerRadius(400);
 
         Switch deviceSwitch = (Switch) findComponentById(ResourceTable.Id_device_switch);
         deviceSwitch.setTrackElement(trackElementInit(elementTrackOn, elementTrackOff));
