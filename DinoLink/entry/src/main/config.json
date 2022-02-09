@@ -29,7 +29,7 @@
             {
               "name": "hwc-theme",
               "value": "androidhwext:style/Theme.Emui.NoTitleBar",
-              "extra":""
+              "extra": ""
             }
           ]
         },
@@ -76,6 +76,15 @@
         "icon": "$media:icon",
         "description": "$string:devicepage_description",
         "label": "$string:entry_DevicePage",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "orientation": "unspecified",
+        "name": "com.dinolink.dinolink.OperatePage",
+        "icon": "$media:icon",
+        "description": "$string:operatepage_description",
+        "label": "$string:entry_OperatePage",
         "type": "page",
         "launchType": "standard"
       }

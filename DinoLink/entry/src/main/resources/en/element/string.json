@@ -39,6 +39,30 @@
     {
       "name": "setting_button_text",
       "value": "Setting"
+    },
+    {
+      "name": "entry_OperatePage",
+      "value": "entry_OperatePage"
+    },
+    {
+      "name": "operatepage_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "operatepage_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "device_state_text",
+      "value": "Device state: "
+    },
+    {
+      "name": "switch_on_text",
+      "value": "ON"
+    },
+    {
+      "name": "switch_off_text",
+      "value": "OFF"
     }
   ]
 }

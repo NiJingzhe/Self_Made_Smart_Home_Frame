@@ -39,6 +39,30 @@
     {
       "name": "setting_button_text",
       "value": "设置"
+    },
+    {
+      "name": "operatepage_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "operatepage_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "entry_OperatePage",
+      "value": "entry_OperatePage"
+    },
+    {
+      "name": "device_state_text",
+      "value": "设备状态: "
+    },
+    {
+      "name": "switch_on_text",
+      "value": "打开"
+    },
+    {
+      "name": "switch_off_text",
+      "value": "关闭"
     }
   ]
 }

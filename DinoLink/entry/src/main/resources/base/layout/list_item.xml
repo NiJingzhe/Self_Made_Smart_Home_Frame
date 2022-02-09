@@ -8,23 +8,24 @@
     ohos:alignment="start"
     ohos:padding="10vp"
     ohos:shadow_color="#77000000"
-    ohos:background_element="$graphic:background_ability_device_page_title_bar">
+    ohos:background_element="$graphic:background_ability_device_page_device_item">
 
     <Image
-        ohos:id="$+id:img"
-        ohos:height="match_parent"
-        ohos:width="match_parent"
+        ohos:id="$+id:img_button"
+        ohos:height="match_content"
+        ohos:width="match_content"
         ohos:clip_alignment="left"
-        ohos:layout_alignment="horizontal_center"
+        ohos:layout_alignment="vertical_center"
+        ohos:text_color="#00FFFFFF"
         ohos:weight="0.5"/>
 
     <Text
         ohos:id="$+id:device_name"
-        ohos:weight="0.5"
-        ohos:height="match_parent"
-        ohos:width="match_parent"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text_alignment="start|vertical_center"
         ohos:text="设备名称"
-        ohos:text_alignment="start"
+        ohos:weight="0.25"
         ohos:text_size="24fp"
         ohos:text_color="#FFFFFFFF"/>
 

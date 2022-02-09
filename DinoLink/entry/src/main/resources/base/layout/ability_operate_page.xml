@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:alignment="start"
+    ohos:background_element="$graphic:background_ability_device_page"
+    ohos:orientation="vertical">
+
+    <DirectionalLayout
+        ohos:height="50vp"
+        ohos:width="match_parent"
+        ohos:background_element="$graphic:background_ability_device_page_title_bar"
+        ohos:orientation="horizontal">
+
+        <Text
+            ohos:id="$+id:title_device_name"
+            ohos:height="match_parent"
+            ohos:width="match_parent"
+            ohos:auto_font_size_max_size="30"
+            ohos:auto_font_size_min_size="22"
+            ohos:start_margin="15vp"
+            ohos:text_alignment="start|vertical_center"
+            ohos:text_color="#FFFFFF"
+            ohos:text_selectable="false"
+            ohos:text_size="25fp"
+            ohos:weight="0.75"/>
+
+
+    </DirectionalLayout>
+
+    <DirectionalLayout
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:orientation="vertical"
+        ohos:padding="15vp">
+
+        <Text
+            ohos:id="$+id:device_state_text"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:text="$string:device_state_text"
+            ohos:text_alignment="vertical_center|start"
+            ohos:text_color="#FF007722"
+            ohos:text_size="20fp"/>
+
+        <Switch
+            ohos:id="$+id:device_switch"
+            ohos:height="40vp"
+            ohos:width="100vp"
+            ohos:text_size="20fp"
+            ohos:text_state_off="$string:switch_off_text"
+            ohos:text_state_on="$string:switch_on_text"/>
+
+    </DirectionalLayout>
+
+</DirectionalLayout>
