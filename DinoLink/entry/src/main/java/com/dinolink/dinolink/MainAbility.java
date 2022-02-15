@@ -1,12 +1,12 @@
 package com.dinolink.dinolink;
 
 import com.dinolink.dinolink.slice.MainAbilitySlice;
-import ohos.aafwk.ability.Ability;
-import ohos.aafwk.content.Intent;
 import com.dinolink.dinolink.widget.controller.FormController;
 import com.dinolink.dinolink.widget.controller.FormControllerManager;
+import ohos.aafwk.ability.Ability;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.ability.ProviderFormInfo;
+import ohos.aafwk.content.Intent;
 import ohos.hiviewdfx.HiLog;
 import ohos.hiviewdfx.HiLogLabel;
 

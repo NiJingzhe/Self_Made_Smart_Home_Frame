@@ -8,11 +8,7 @@ import ohos.hiviewdfx.HiLogLabel;
 import ohos.utils.zson.ZSONObject;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Form controller manager.

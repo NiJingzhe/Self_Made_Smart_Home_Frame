@@ -9,15 +9,13 @@ public class MainAbilitySlice extends AbilitySlice implements TickTimer.TickList
 
     TickTimer tickTimer;
 
-
-
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_ability_main);
 
 
-        tickTimer = findComponentById(ResourceTable.Id_ticktimer);
+        tickTimer = (TickTimer) findComponentById(ResourceTable.Id_ticktimer);
         tickTimer.setCountDown(false);
         tickTimer.setTickListener(this);
         tickTimer.setFormat("ss");

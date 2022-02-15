@@ -1,0 +1,37 @@
+{
+  "agcgw_all": {
+    "CN": "connect-drcn.dbankcloud.cn",
+    "CN_back": "connect-drcn.hispace.hicloud.com",
+    "DE": "connect-dre.dbankcloud.cn",
+    "DE_back": "connect-dre.hispace.hicloud.com",
+    "RU": "connect-drru.dbankcloud.cn",
+    "RU_back": "connect-drru.hispace.hicloud.com",
+    "SG": "connect-dra.dbankcloud.cn",
+    "SG_back": "connect-dra.hispace.hicloud.com"
+  },
+  "client": {
+    "cp_id": "70086000203034620",
+    "product_id": "737518067794487233",
+    "client_id": "827603490028145664",
+    "client_secret": "[!0014922FD619955534ABFDB0983EA72CC6C2E3829676E4ABC2E6A1A6800B8A0E8CC3D9D37CB959DF6C7F4F7F57731920E86AA43DBF77108FE754237E265F6A004DA8B4F27C803A278B0B450C1533B6CD05C7D425D7F1B1E664D6874015D45713DB]",
+    "project_id": "737518067794487233",
+    "app_id": "105574593",
+    "api_key": "[!00AC46E3112F7D4FEE09A9BB17634F87A123E7EBBD6A9A2544B336E007A5408D11B5311DF73D68549A56B6253FADB6677FAD0ADC9715B3C70725934917908CB0E89B9A148A2D1808E029628FC15E9917CF419A9261AE55026931DA302DA33DC2EE1C9EEE5496EFDAFD754EDD926EBBC85B3EFF7D01637DE62BD6B0F9ED99BBCA3B]",
+    "package_name": "com.dinolink.dinolink"
+  },
+  "oauth_client": {
+    "client_id": "105574593",
+    "client_type": 30
+  },
+  "app_info": {
+    "app_id": "827604122629843840",
+    "package_name": "com.dinolink.dinolink"
+  },
+  "code": {
+    "code1": "0B7262BF6746099E1D6A19EBC7806C7A",
+    "code2": "43A6644A737943AE296F172AEFBA20B3",
+    "code3": "CDCEA7A6C77D93A7C4B531D5F2FEDC7A",
+    "code4": "F932EE4E271387287C0C9CCC15B41961"
+  },
+  "configuration_version": "3.0"
+}
