@@ -12,6 +12,8 @@ import java.util.ArrayList;
 public class DevicePageSlice extends AbilitySlice {
 
     ListContainer listContainer;
+    Intent intent_;
+    ArrayList<item> itemList;
 
     @Override
     public void onStart(Intent intent) {
@@ -21,16 +23,14 @@ public class DevicePageSlice extends AbilitySlice {
         listContainer = (ListContainer) findComponentById(ResourceTable.Id_list_container);
 
         // 创建集合并给集合添加数据
-        ArrayList<item> itemList = initData();
-
-        int index = intent.getIntParam("device_id", -2);
-        String state = intent.getStringParam("device_state");
-        itemList.get(index).setState(state);
+        itemList = initData();
         //创建一个Item的管理员对象（适配器）
         //并把要展示的所有数据和要加载的页面传过去
         itemProvider ip = new itemProvider(itemList, this);
         //把适配器交给列表容器组件
         listContainer.setItemProvider(ip);
+
+
     }
 
     public ArrayList<item> initData() {

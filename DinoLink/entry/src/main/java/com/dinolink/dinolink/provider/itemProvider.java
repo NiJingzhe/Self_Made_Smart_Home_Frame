@@ -13,6 +13,7 @@ import java.util.Objects;
 public class itemProvider extends BaseItemProvider {
     private ArrayList<item> list;
     private AbilitySlice as;
+    //public DirectionalLayout dl;
 
     public itemProvider(ArrayList<item> list_, AbilitySlice as_) {
         this.list = list_;
@@ -95,6 +96,7 @@ public class itemProvider extends BaseItemProvider {
         });
 
         dl.setClickable(true);
+        dl.setLongClickable(false);
         dl.setClickedListener(new Component.ClickedListener() {
             @Override
             public void onClick(Component component) {
@@ -103,7 +105,7 @@ public class itemProvider extends BaseItemProvider {
                 Intent dlClickedIntent = new Intent();
                 dlClickedIntent.setParam("device_name", device_name.getText());
                 dlClickedIntent.setParam("device_state", item.getDeviceState());
-                dlClickedIntent.setParam("device_id", i);
+                dlClickedIntent.setParam("item_id", i);
                 as.present(new OperatePageSlice(), dlClickedIntent);
             }
         });

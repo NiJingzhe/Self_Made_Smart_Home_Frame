@@ -15,6 +15,8 @@ public class OperatePageSlice extends AbilitySlice {
 
     Intent intent_;
     String deviceState;
+    int item_id;
+    //DevicePageSlice dps = new DevicePageSlice();
 
     @Override
     public void onStart(Intent intent) {
@@ -25,6 +27,7 @@ public class OperatePageSlice extends AbilitySlice {
 
         String deviceName = intent.getStringParam("device_name");
         this.deviceState = intent.getStringParam("device_state");
+        this.item_id = intent.getIntParam("item_id", -1);
 
         Text title = (Text) findComponentById(ResourceTable.Id_title_device_name);
         title.setText(deviceName);
@@ -55,7 +58,7 @@ public class OperatePageSlice extends AbilitySlice {
         deviceSwitch.setThumbElement(thumbElementInit(elementThumbOn, elementThumbOff));
 
         if (deviceState.equals("ON")) {
-            deviceSwitch.setPressState(true);
+            deviceSwitch.setChecked(true);
         }
 
         deviceSwitch.setCheckedStateChangedListener(new AbsButton.CheckedStateChangedListener() {
@@ -63,9 +66,11 @@ public class OperatePageSlice extends AbilitySlice {
             public void onCheckedChanged(AbsButton button, boolean isChecked) {
                 if (isChecked) {
                     deviceState = "ON";
+
                 } else {
                     deviceState = "OFF";
                 }
+                //dps.itemList.get(item_id).setState(deviceState);
             }
         });
 
@@ -102,6 +107,6 @@ public class OperatePageSlice extends AbilitySlice {
         backToDevicePage.setParam("device_id", this.intent_.getIntParam("device_id", -1));
         backToDevicePage.setParam("device_state", this.deviceState);
         present(new DevicePageSlice(), backToDevicePage);
-        super.onStop();
+        terminate();
     }
 }
