@@ -12,12 +12,19 @@ import ohos.agp.components.element.ShapeElement;
 import ohos.agp.components.element.StateElement;
 
 public class OperatePageSlice extends AbilitySlice {
+
+    Intent intent_;
+    String deviceState;
+
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_ability_operate_page);
 
+        this.intent_ = intent;
+
         String deviceName = intent.getStringParam("device_name");
+        this.deviceState = intent.getStringParam("device_state");
 
         Text title = (Text) findComponentById(ResourceTable.Id_title_device_name);
         title.setText(deviceName);
@@ -46,10 +53,19 @@ public class OperatePageSlice extends AbilitySlice {
         Switch deviceSwitch = (Switch) findComponentById(ResourceTable.Id_device_switch);
         deviceSwitch.setTrackElement(trackElementInit(elementTrackOn, elementTrackOff));
         deviceSwitch.setThumbElement(thumbElementInit(elementThumbOn, elementThumbOff));
+
+        if (deviceState.equals("ON")) {
+            deviceSwitch.setPressState(true);
+        }
+
         deviceSwitch.setCheckedStateChangedListener(new AbsButton.CheckedStateChangedListener() {
             @Override
             public void onCheckedChanged(AbsButton button, boolean isChecked) {
-
+                if (isChecked) {
+                    deviceState = "ON";
+                } else {
+                    deviceState = "OFF";
+                }
             }
         });
 
@@ -82,6 +98,10 @@ public class OperatePageSlice extends AbilitySlice {
 
     @Override
     public void onStop() {
+        Intent backToDevicePage = new Intent();
+        backToDevicePage.setParam("device_id", this.intent_.getIntParam("device_id", -1));
+        backToDevicePage.setParam("device_state", this.deviceState);
+        present(new DevicePageSlice(), backToDevicePage);
         super.onStop();
     }
 }

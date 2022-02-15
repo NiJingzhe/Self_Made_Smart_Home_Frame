@@ -22,6 +22,10 @@ public class DevicePageSlice extends AbilitySlice {
 
         // 创建集合并给集合添加数据
         ArrayList<item> itemList = initData();
+
+        int index = intent.getIntParam("device_id", -2);
+        String state = intent.getStringParam("device_state");
+        itemList.get(index).setState(state);
         //创建一个Item的管理员对象（适配器）
         //并把要展示的所有数据和要加载的页面传过去
         itemProvider ip = new itemProvider(itemList, this);

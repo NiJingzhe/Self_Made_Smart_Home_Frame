@@ -102,6 +102,8 @@ public class itemProvider extends BaseItemProvider {
                 Text device_name = (Text) dl.findComponentById(ResourceTable.Id_device_name);
                 Intent dlClickedIntent = new Intent();
                 dlClickedIntent.setParam("device_name", device_name.getText());
+                dlClickedIntent.setParam("device_state", item.getDeviceState());
+                dlClickedIntent.setParam("device_id", i);
                 as.present(new OperatePageSlice(), dlClickedIntent);
             }
         });
