@@ -39,11 +39,10 @@
    }
   ],
   "runningProfileList": [
-   "P40"
-  ],
-  "availableProfileList": [
+   "P40",
    "MateX2",
    "MatePadPro"
-  ]
+  ],
+  "availableProfileList": []
  }
 }

@@ -5,7 +5,11 @@ import com.dinolink.dinolink.domin.item;
 import com.dinolink.dinolink.provider.itemProvider;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
+import ohos.agp.components.Button;
+import ohos.agp.components.Component;
 import ohos.agp.components.ListContainer;
+import ohos.data.DatabaseHelper;
+import ohos.data.preferences.Preferences;
 
 import java.util.ArrayList;
 
@@ -19,6 +23,16 @@ public class DevicePageSlice extends AbilitySlice {
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_ability_device_page);
+
+        DatabaseHelper dataBaseHelper = new DatabaseHelper(getApplicationContext());
+        String fileName = "preference_db";
+        Preferences preference = dataBaseHelper.getPreferences(fileName);
+
+        String centerIP = preference.getString("center_ip", "");
+
+        //Text title = (Text) findComponentById(ResourceTable.Id_device_page_title);
+        //title.setText(centerIP);
+
         //找到listcontainer
         listContainer = (ListContainer) findComponentById(ResourceTable.Id_list_container);
 
@@ -30,6 +44,13 @@ public class DevicePageSlice extends AbilitySlice {
         //把适配器交给列表容器组件
         listContainer.setItemProvider(ip);
 
+        Button settingButton = (Button) findComponentById(ResourceTable.Id_setting_button);
+        settingButton.setClickedListener(new Component.ClickedListener() {
+            @Override
+            public void onClick(Component component) {
+                present(new SettingPageSlice(), new Intent());
+            }
+        });
 
     }
 

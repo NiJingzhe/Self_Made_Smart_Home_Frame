@@ -72,19 +72,10 @@
       },
       {
         "orientation": "unspecified",
-        "name": "com.dinolink.dinolink.DevicePage",
+        "name": "com.dinolink.dinolink.SettingPage",
         "icon": "$media:icon",
-        "description": "$string:devicepage_description",
-        "label": "$string:entry_DevicePage",
-        "type": "page",
-        "launchType": "standard"
-      },
-      {
-        "orientation": "unspecified",
-        "name": "com.dinolink.dinolink.OperatePage",
-        "icon": "$media:icon",
-        "description": "$string:operatepage_description",
-        "label": "$string:entry_OperatePage",
+        "description": "$string:settingpage_description",
+        "label": "$string:entry_SettingPage",
         "type": "page",
         "launchType": "standard"
       }
@@ -100,6 +91,11 @@
           "autoDesignWidth": true
         },
         "type": "form"
+      }
+    ],
+    "defPermissions": [
+      {
+        "name": "com.dinolink.dinolink.DataAbilityShellProvider.PROVIDER"
       }
     ]
   }

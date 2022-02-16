@@ -7,7 +7,6 @@
     ohos:orientation="vertical"
     ohos:alignment="start"
     ohos:padding="10vp"
-    ohos:shadow_color="#77000000"
     ohos:background_element="$graphic:background_ability_device_page_device_item">
 
     <Image

@@ -63,6 +63,34 @@
     {
       "name": "switch_off_text",
       "value": "OFF"
+    },
+    {
+      "name": "devicedata_description",
+      "value": "hap sample empty provider"
+    },
+    {
+      "name": "settingpage_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "settingpage_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "entry_SettingPage",
+      "value": "entry_SettingPage"
+    },
+    {
+      "name": "title_setting_page",
+      "value": "设置"
+    },
+    {
+      "name": "apply_button_text",
+      "value": "应用更改"
+    },
+    {
+      "name": "preference_center_ip",
+      "value": "中枢IP "
     }
   ]
 }

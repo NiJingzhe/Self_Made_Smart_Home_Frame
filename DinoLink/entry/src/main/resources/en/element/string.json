@@ -63,6 +63,34 @@
     {
       "name": "switch_off_text",
       "value": "OFF"
+    },
+    {
+      "name": "devicedata_description",
+      "value": "hap sample empty provider"
+    },
+    {
+      "name": "entry_SettingPage",
+      "value": "entry_SettingPage"
+    },
+    {
+      "name": "settingpage_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "settingpage_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "title_setting_page",
+      "value": "Setting"
+    },
+    {
+      "name": "apply_button_text",
+      "value": "Apply Changes"
+    },
+    {
+      "name": "preference_center_ip",
+      "value": "Center IP "
     }
   ]
 }

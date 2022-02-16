@@ -14,7 +14,7 @@
         ohos:background_element="$graphic:background_ability_device_page_title_bar">
 
         <Text
-            ohos:id="$+id:title"
+            ohos:id="$+id:device_page_title"
             ohos:weight="0.75"
             ohos:height="match_parent"
             ohos:width="match_parent"
@@ -22,10 +22,7 @@
             ohos:start_margin="15vp"
             ohos:text_alignment="start|vertical_center"
             ohos:text_color="#FFFFFF"
-            ohos:text_size="25fp"
-            ohos:text_selectable="false"
-            ohos:auto_font_size_min_size="22"
-            ohos:auto_font_size_max_size="30"/>
+            ohos:text_size="25fp"/>
 
         <Button
             ohos:id="$+id:setting_button"
@@ -36,9 +33,6 @@
             ohos:text="$string:setting_button_text"
             ohos:text_color="#FFFFFF"
             ohos:text_size="16fp"
-            ohos:text_selectable="false"
-            ohos:auto_font_size_min_size="12"
-            ohos:auto_font_size_max_size="20"
             />
 
     </DirectionalLayout>

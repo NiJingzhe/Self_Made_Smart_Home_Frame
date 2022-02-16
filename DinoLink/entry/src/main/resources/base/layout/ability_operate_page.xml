@@ -17,12 +17,9 @@
             ohos:id="$+id:title_device_name"
             ohos:height="match_parent"
             ohos:width="match_parent"
-            ohos:auto_font_size_max_size="30"
-            ohos:auto_font_size_min_size="22"
             ohos:start_margin="15vp"
             ohos:text_alignment="start|vertical_center"
             ohos:text_color="#FFFFFF"
-            ohos:text_selectable="false"
             ohos:text_size="25fp"
             ohos:weight="0.75"/>
 
