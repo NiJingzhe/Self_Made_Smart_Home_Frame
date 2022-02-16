@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:alignment="horizontal_center"
+    ohos:orientation="vertical">
+
+    <DirectionalLayout
+        ohos:height="50vp"
+        ohos:width="match_parent"
+        ohos:background_element="$graphic:background_ability_device_page_title_bar"
+        ohos:orientation="horizontal">
+
+        <Text
+            ohos:id="$+id:title_setting_page"
+            ohos:height="match_parent"
+            ohos:width="match_parent"
+            ohos:start_margin="15vp"
+            ohos:text="$string:title_setting_page"
+            ohos:text_alignment="start|vertical_center"
+            ohos:text_color="#FFFFFF"
+            ohos:text_size="25fp"
+            ohos:weight="0.75"/>
+
+
+    </DirectionalLayout>
+
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:orientation="vertical">
+
+        <DirectionalLayout
+            ohos:height="50vp"
+            ohos:width="match_parent"
+            ohos:alignment="vertical_center"
+            ohos:orientation="horizontal">
+
+            <Text
+                ohos:height="match_parent"
+                ohos:width="match_parent"
+                ohos:bottom_margin="10vp"
+                ohos:start_margin="10vp"
+                ohos:text="$string:preference_center_ip"
+                ohos:text_alignment="center"
+                ohos:text_color="#FF000000"
+                ohos:text_size="18fp"
+                ohos:top_margin="10vp"
+                ohos:weight="0.25"/>
+
+            <TextField
+                ohos:id="$+id:center_ip_input"
+                ohos:height="match_parent"
+                ohos:width="match_parent"
+                ohos:background_element="$graphic:text_field_background"
+                ohos:bottom_margin="10vp"
+                ohos:end_margin="10vp"
+                ohos:hint="$string:preference_center_ip"
+                ohos:hint_color="#55000000"
+                ohos:text_alignment="center"
+                ohos:text_color="#FF000000"
+                ohos:text_size="18fp"
+                ohos:top_margin="10vp"
+                ohos:weight="0.75"/>
+
+        </DirectionalLayout>
+
+    </DirectionalLayout>
+
+    <DirectionalLayout
+        ohos:height="50vp"
+        ohos:width="match_parent"
+        ohos:alignment="end|bottom">
+
+        <Button
+            ohos:id="$+id:apply_button"
+            ohos:height="match_parent"
+            ohos:width="match_parent"
+            ohos:background_element="$graphic:background_ability_device_page_device_item"
+            ohos:margin="10vp"
+            ohos:text="$string:apply_button_text"
+            ohos:text_alignment="center"
+            ohos:text_color="#FFFFFFFF"
+            ohos:text_size="20fp"/>
+
+    </DirectionalLayout>
+
+</DirectionalLayout>

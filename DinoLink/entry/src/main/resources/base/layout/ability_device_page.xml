@@ -37,11 +37,29 @@
 
     </DirectionalLayout>
 
-    <ListContainer
-        ohos:id="$+id:list_container"
+    <ScrollView
         ohos:height="match_parent"
         ohos:width="match_parent"
-        ohos:layout_alignment="horizontal_center"
-        ohos:orientation="vertical"/>
+        ohos:orientation="vertical">
+
+        <ListContainer
+            ohos:id="$+id:list_container"
+            ohos:height="match_parent"
+            ohos:width="match_parent"
+            ohos:layout_alignment="horizontal_center"
+            ohos:orientation="vertical"/>
+
+        <Button
+            ohos:id="$+id:add_device_button"
+            ohos:height="60vp"
+            ohos:width="60vp"
+            ohos:background_element="$graphic:add_device_button"
+            ohos:layout_alignment="end|bottom"
+            ohos:margin="30vp"
+            ohos:text="+"
+            ohos:text_color="#FFFFFFFF"
+            ohos:text_size="30fp"/>
+
+    </ScrollView>
 
 </DirectionalLayout>
