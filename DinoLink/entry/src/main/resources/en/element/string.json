@@ -91,6 +91,10 @@
     {
       "name": "preference_center_ip",
       "value": "Center IP "
+    },
+    {
+      "name": "settingpage_description",
+      "value": "this is setting page"
     }
   ]
 }

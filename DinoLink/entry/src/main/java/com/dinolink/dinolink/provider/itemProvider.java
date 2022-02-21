@@ -2,7 +2,7 @@ package com.dinolink.dinolink.provider;
 
 import com.dinolink.dinolink.ResourceTable;
 import com.dinolink.dinolink.domin.item;
-import com.dinolink.dinolink.slice.OperatePageSlice;
+import com.dinolink.dinolink.slice.DeviceOperatorSlice;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.*;
@@ -106,7 +106,7 @@ public class itemProvider extends BaseItemProvider {
                 dlClickedIntent.setParam("device_name", device_name.getText());
                 dlClickedIntent.setParam("device_state", item.getDeviceState());
                 dlClickedIntent.setParam("item_id", i);
-                as.present(new OperatePageSlice(), dlClickedIntent);
+                as.presentForResult(new DeviceOperatorSlice(), dlClickedIntent, 0);
             }
         });
 

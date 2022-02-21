@@ -71,11 +71,45 @@
         "launchType": "standard"
       },
       {
+        "metaData": {
+          "customizeData": [
+            {
+              "name": "hwc-theme",
+              "value": "androidhwext:style/Theme.Emui.NoTitleBar",
+              "extra": ""
+            }
+          ]
+        },
         "orientation": "unspecified",
         "name": "com.dinolink.dinolink.SettingPage",
         "icon": "$media:icon",
         "description": "$string:settingpage_description",
         "label": "$string:entry_SettingPage",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "metaData": {
+          "customizeData": [
+            {
+              "name": "hwc-theme",
+              "value": "androidhwext:style/Theme.Emui.NoTitleBar",
+              "extra": ""
+            }
+          ]
+        },
+        "skills": [
+          {
+            "actions": [
+              "action.operate"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "name": "com.dinolink.dinolink.DevicePage",
+        "icon": "$media:icon",
+        "description": "$string:devicepage_description",
+        "label": "$string:entry_DevicePage",
         "type": "page",
         "launchType": "standard"
       }

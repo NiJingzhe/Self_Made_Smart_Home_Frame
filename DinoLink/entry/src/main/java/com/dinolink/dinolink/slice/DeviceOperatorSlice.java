@@ -11,12 +11,13 @@ import ohos.agp.components.Text;
 import ohos.agp.components.element.ShapeElement;
 import ohos.agp.components.element.StateElement;
 
-public class OperatePageSlice extends AbilitySlice {
+public class DeviceOperatorSlice extends AbilitySlice {
 
     Intent intent_;
     String deviceState;
     int item_id;
-    //DevicePageSlice dps = new DevicePageSlice();
+    Intent resultIntentToDeviceListSlice;
+    //DeviceListSlice dps = new DeviceListSlice();
 
     @Override
     public void onStart(Intent intent) {
@@ -66,9 +67,14 @@ public class OperatePageSlice extends AbilitySlice {
             public void onCheckedChanged(AbsButton button, boolean isChecked) {
                 if (isChecked) {
                     deviceState = "ON";
-
+                    resultIntentToDeviceListSlice.setParam("item_id", item_id);
+                    resultIntentToDeviceListSlice.setParam("device_state", deviceState);
+                    setResult(resultIntentToDeviceListSlice);
                 } else {
                     deviceState = "OFF";
+                    resultIntentToDeviceListSlice.setParam("item_id", item_id);
+                    resultIntentToDeviceListSlice.setParam("device_state", deviceState);
+                    setResult(resultIntentToDeviceListSlice);
                 }
                 //dps.itemList.get(item_id).setState(deviceState);
             }
@@ -92,6 +98,14 @@ public class OperatePageSlice extends AbilitySlice {
 
 
     @Override
+    public void onBackPressed() {
+        resultIntentToDeviceListSlice.setParam("item_id", item_id);
+        resultIntentToDeviceListSlice.setParam("device_state", deviceState);
+        setResult(resultIntentToDeviceListSlice);
+        terminate();
+    }
+
+    @Override
     public void onActive() {
         super.onActive();
     }
@@ -103,10 +117,6 @@ public class OperatePageSlice extends AbilitySlice {
 
     @Override
     public void onStop() {
-        Intent backToDevicePage = new Intent();
-        backToDevicePage.setParam("device_id", this.intent_.getIntParam("device_id", -1));
-        backToDevicePage.setParam("device_state", this.deviceState);
-        present(new DevicePageSlice(), backToDevicePage);
-        terminate();
+        super.onStop();
     }
 }

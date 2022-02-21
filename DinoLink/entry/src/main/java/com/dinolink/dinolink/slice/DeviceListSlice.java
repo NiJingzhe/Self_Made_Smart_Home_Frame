@@ -5,6 +5,7 @@ import com.dinolink.dinolink.domin.item;
 import com.dinolink.dinolink.provider.itemProvider;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
+import ohos.aafwk.content.Operation;
 import ohos.agp.components.Button;
 import ohos.agp.components.Component;
 import ohos.agp.components.ListContainer;
@@ -13,7 +14,7 @@ import ohos.data.preferences.Preferences;
 
 import java.util.ArrayList;
 
-public class DevicePageSlice extends AbilitySlice {
+public class DeviceListSlice extends AbilitySlice {
 
     ListContainer listContainer;
     Intent intent_;
@@ -30,9 +31,6 @@ public class DevicePageSlice extends AbilitySlice {
 
         String centerIP = preference.getString("center_ip", "");
 
-        //Text title = (Text) findComponentById(ResourceTable.Id_device_page_title);
-        //title.setText(centerIP);
-
         //找到listcontainer
         listContainer = (ListContainer) findComponentById(ResourceTable.Id_list_container);
 
@@ -48,7 +46,14 @@ public class DevicePageSlice extends AbilitySlice {
         settingButton.setClickedListener(new Component.ClickedListener() {
             @Override
             public void onClick(Component component) {
-                present(new SettingPageSlice(), new Intent());
+                Intent toSettingPage = new Intent();
+                Operation operation = new Intent.OperationBuilder()
+                        .withDeviceId("")    // 设备Id，在本地上进行跳转可以为空，跨设备进行跳转则需要传入值
+                        .withBundleName("com.dinolink.dinolink")    // 包名
+                        .withAbilityName(".SettingPage")    // Ability页面的名称，在本地可以缺省前面的路径
+                        .build();    // 构建代码
+                toSettingPage.setOperation(operation);    // 将operation存入到intent中
+                startAbility(toSettingPage);    // 实现Ability跳转
             }
         });
 
@@ -62,9 +67,28 @@ public class DevicePageSlice extends AbilitySlice {
         return list;
     }
 
+
+    @Override
+    protected void onResult(int requestCode, Intent resultIntent) {
+        if (resultIntent == null || requestCode != 0) {
+            return;
+        }
+        super.onResult(requestCode, resultIntent);
+        if (resultIntent.getIntParam("item_id", -1) == -1) {
+            return;
+        }
+        itemList.get(resultIntent.getIntParam("item_id", -1))
+                .setState(resultIntent.getStringParam("device_state"));
+
+    }
+
     @Override
     public void onActive() {
         super.onActive();
+        listContainer = (ListContainer) findComponentById(ResourceTable.Id_list_container);
+        itemProvider ip = new itemProvider(itemList, this);
+        listContainer.setItemProvider(ip);
+
     }
 
     @Override
