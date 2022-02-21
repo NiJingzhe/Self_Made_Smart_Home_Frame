@@ -91,6 +91,10 @@
     {
       "name": "preference_center_ip",
       "value": "中枢IP "
+    },
+    {
+      "name": "successfully_saved_change",
+      "value": "设置成功"
     }
   ]
 }

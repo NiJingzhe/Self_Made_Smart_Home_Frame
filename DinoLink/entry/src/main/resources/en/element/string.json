@@ -91,6 +91,10 @@
     {
       "name": "preference_center_ip",
       "value": "Center IP "
+    },
+    {
+      "name": "successfully_saved_change",
+      "value": "successfully saved change"
     }
   ]
 }

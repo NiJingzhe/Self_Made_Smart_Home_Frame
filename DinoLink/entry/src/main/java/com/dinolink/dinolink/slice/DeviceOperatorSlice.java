@@ -4,7 +4,6 @@ import com.dinolink.dinolink.ResourceTable;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.colors.RgbColor;
-import ohos.agp.components.AbsButton;
 import ohos.agp.components.ComponentState;
 import ohos.agp.components.Switch;
 import ohos.agp.components.Text;
@@ -25,6 +24,7 @@ public class DeviceOperatorSlice extends AbilitySlice {
         super.setUIContent(ResourceTable.Layout_ability_operate_page);
 
         this.intent_ = intent;
+        this.resultIntentToDeviceListSlice = new Intent();
 
         String deviceName = intent.getStringParam("device_name");
         this.deviceState = intent.getStringParam("device_state");
@@ -61,23 +61,19 @@ public class DeviceOperatorSlice extends AbilitySlice {
         if (deviceState.equals("ON")) {
             deviceSwitch.setChecked(true);
         }
+        if (deviceState.equals("OFF")) {
+            deviceSwitch.setChecked(false);
+        }
 
-        deviceSwitch.setCheckedStateChangedListener(new AbsButton.CheckedStateChangedListener() {
-            @Override
-            public void onCheckedChanged(AbsButton button, boolean isChecked) {
-                if (isChecked) {
-                    deviceState = "ON";
-                    resultIntentToDeviceListSlice.setParam("item_id", item_id);
-                    resultIntentToDeviceListSlice.setParam("device_state", deviceState);
-                    setResult(resultIntentToDeviceListSlice);
-                } else {
-                    deviceState = "OFF";
-                    resultIntentToDeviceListSlice.setParam("item_id", item_id);
-                    resultIntentToDeviceListSlice.setParam("device_state", deviceState);
-                    setResult(resultIntentToDeviceListSlice);
-                }
-                //dps.itemList.get(item_id).setState(deviceState);
+        deviceSwitch.setCheckedStateChangedListener((Button, isChecked) -> {
+            if (isChecked) {
+                deviceState = "ON";
+            } else {
+                deviceState = "OFF";
             }
+            resultIntentToDeviceListSlice.setParam("item_id", item_id);
+            resultIntentToDeviceListSlice.setParam("device_state", deviceState);
+            setResult(resultIntentToDeviceListSlice);
         });
 
     }
