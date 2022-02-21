@@ -97,17 +97,14 @@ public class itemProvider extends BaseItemProvider {
 
         dl.setClickable(true);
         dl.setLongClickable(false);
-        dl.setClickedListener(new Component.ClickedListener() {
-            @Override
-            public void onClick(Component component) {
-                DirectionalLayout dl = (DirectionalLayout) component;
-                Text device_name = (Text) dl.findComponentById(ResourceTable.Id_device_name);
-                Intent dlClickedIntent = new Intent();
-                dlClickedIntent.setParam("device_name", device_name.getText());
-                dlClickedIntent.setParam("device_state", item.getDeviceState());
-                dlClickedIntent.setParam("item_id", i);
-                as.presentForResult(new DeviceOperatorSlice(), dlClickedIntent, 0);
-            }
+        dl.setClickedListener((clickedComponent) -> {
+            DirectionalLayout clickedDl = (DirectionalLayout) clickedComponent;
+            Text clicked_Device_name = (Text) clickedDl.findComponentById(ResourceTable.Id_device_name);
+            Intent dlClickedIntent = new Intent();
+            dlClickedIntent.setParam("device_name", clicked_Device_name.getText());
+            dlClickedIntent.setParam("device_state", item.getDeviceState());
+            dlClickedIntent.setParam("item_id", i);
+            as.presentForResult(new DeviceOperatorSlice(), dlClickedIntent, 0);
         });
 
         return dl;
