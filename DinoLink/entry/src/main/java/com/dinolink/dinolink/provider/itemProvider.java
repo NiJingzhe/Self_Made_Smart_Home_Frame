@@ -75,24 +75,21 @@ public class itemProvider extends BaseItemProvider {
         int resourceId = Objects.equals(item.getDeviceState(), "OFF") ? ResourceTable.Media_switch_off : ResourceTable.Media_switch_on;
         img.setImageAndDecodeBounds(resourceId);
         img.setClickable(true);
-        img.setClickedListener(new Component.ClickedListener() {
-            @Override
-            public void onClick(Component component) {
-                Image img = (Image) component;
-                switch (item.getDeviceState()) {
-                    case "OFF":
-                        img.setImageAndDecodeBounds(ResourceTable.Media_switch_on);
-                        item.setState("ON");
-                        break;
-                    case "ON":
-                        img.setImageAndDecodeBounds(ResourceTable.Media_switch_off);
-                        item.setState("OFF");
-                        break;
-                    default:
-                        break;
-                }
-
+        img.setClickedListener((clickedComponent) -> {
+            Image clickedImg = (Image) clickedComponent;
+            switch (item.getDeviceState()) {
+                case "OFF":
+                    clickedImg.setImageAndDecodeBounds(ResourceTable.Media_switch_on);
+                    item.setState("ON");
+                    break;
+                case "ON":
+                    clickedImg.setImageAndDecodeBounds(ResourceTable.Media_switch_off);
+                    item.setState("OFF");
+                    break;
+                default:
+                    break;
             }
+
         });
 
         dl.setClickable(true);
