@@ -33,6 +33,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.1'
     ohosTestImplementation 'com.huawei.ohos.testkit:runner:2.0.0.200'
     implementation 'com.huawei.agconnect:agconnect-core-harmony:1.0.0.300'
+    implementation 'com.zzrv5.zzrhttp:ZZRHttp:1.0.1'
 }
 decc {
     supportType = ['html', 'xml']

@@ -7,7 +7,13 @@
       "name": "1.0.0"
     }
   },
-  "deviceConfig": {},
+  "deviceConfig": {
+    "default": {
+      "network": {
+        "cleartextTraffic": true
+      }
+    }
+  },
   "module": {
     "package": "com.dinolink.dinolink",
     "name": ".MyApplication",
@@ -130,6 +136,11 @@
     "defPermissions": [
       {
         "name": "com.dinolink.dinolink.DataAbilityShellProvider.PROVIDER"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.INTERNET"
       }
     ]
   }
