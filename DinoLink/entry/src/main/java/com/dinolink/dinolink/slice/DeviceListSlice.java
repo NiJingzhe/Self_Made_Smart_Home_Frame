@@ -7,7 +7,6 @@ import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.aafwk.content.Operation;
 import ohos.agp.components.Button;
-import ohos.agp.components.Component;
 import ohos.agp.components.ListContainer;
 import ohos.data.DatabaseHelper;
 import ohos.data.preferences.Preferences;
@@ -43,18 +42,15 @@ public class DeviceListSlice extends AbilitySlice {
         listContainer.setItemProvider(ip);
 
         Button settingButton = (Button) findComponentById(ResourceTable.Id_setting_button);
-        settingButton.setClickedListener(new Component.ClickedListener() {
-            @Override
-            public void onClick(Component component) {
-                Intent toSettingPage = new Intent();
-                Operation operation = new Intent.OperationBuilder()
-                        .withDeviceId("")    // 设备Id，在本地上进行跳转可以为空，跨设备进行跳转则需要传入值
-                        .withBundleName("com.dinolink.dinolink")    // 包名
-                        .withAbilityName(".SettingPage")    // Ability页面的名称，在本地可以缺省前面的路径
-                        .build();    // 构建代码
-                toSettingPage.setOperation(operation);    // 将operation存入到intent中
-                startAbility(toSettingPage);    // 实现Ability跳转
-            }
+        settingButton.setClickedListener(component -> {
+            Intent toSettingPage = new Intent();
+            Operation operation = new Intent.OperationBuilder()
+                    .withDeviceId("")    // 设备Id，在本地上进行跳转可以为空，跨设备进行跳转则需要传入值
+                    .withBundleName("com.dinolink.dinolink")    // 包名
+                    .withAbilityName(".SettingPage")    // Ability页面的名称，在本地可以缺省前面的路径
+                    .build();    // 构建代码
+            toSettingPage.setOperation(operation);    // 将operation存入到intent中
+            startAbility(toSettingPage);    // 实现Ability跳转
         });
 
     }
