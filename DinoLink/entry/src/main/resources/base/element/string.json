@@ -91,10 +91,6 @@
     {
       "name": "preference_center_ip",
       "value": "中枢IP "
-    },
-    {
-      "name": "settingpage_description",
-      "value": "this is setting page"
     }
   ]
 }
